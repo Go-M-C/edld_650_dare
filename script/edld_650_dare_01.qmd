@@ -1,0 +1,33 @@
+---
+title: "edld_650_dare_01"
+author: "Dodjivi Amekoudji & Michelle Cui"
+format: html
+editor: visual
+---
+
+EDLD 650 Advanced Seminar in Educational Research Methods\
+Professor: David D. Liebowitz\
+Apr 15, 2026
+
+## Data Analysis and Replication Exercise
+
+Data Analysis and Replication Exercises (DAREs) (4 DAREs, worth 10 points each for a total of 40 points): For each of the four units, you will complete a Data Analysis and Replication Exercise (DARE) that will require you to integrate statistical programming, methodological understanding and scholarly writing skills. In the preceding class, you will be provided with guidance and a detailed assignment that will entail familiarizing yourself with a replication dataset for one of the papers we have read. You will need to familiarize yourself with this small data set, produce a set of tables and figures that replicate some of the results from the paper, and write up your results in a memo following scholarly reporting standards. Each DARE will have a detailed assignment sheet and you will receive model responses after your work is submitted You will need to upload your work to Canvas by 11:59pm of the Tuesday in the week in which the DARE is due.
+
+### DARE 01
+
+You will replicate and extend analysis from Liebowitz, Porter and Bragg. In the file EDLD 650 DARE 1.csv, you will find the variables listed in Table 1. These data have been aggregated to the state level and altered to preserve confidentiality; thus your results will diﬀer (slightly) from those in the paper. Please make sure that your graph axes are labeled, the variables in your tables have comprehensible labels, and your table notes are complete.\
+
+```{r}
+# Load package
+library(pacman)
+p_load(here, tidyverse, lme4, haven)
+```
+
+
+```{r}
+# Load the data
+df <- read_csv(here("data/EDLD_650_DARE_1.csv"))
+
+
+```
+
