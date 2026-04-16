@@ -60,3 +60,49 @@ df <- df %>%
     
   )
 ```
+
+#### B. Understanding the Data and Descriptive Statistics
+
+B1. Inspect your data. What sorts of missingness exist within the data
+file? What sorts of missingness should concern you? Which do not?
+In this assignment, please restrict your sample to state-years with non-
+missing outcomes.
+
+*Answer:*
+Per our inspection, each row is a state-year observation nested in state clustering unit. We are less concerned with the missingness existed in the eval_year, class_remove_year, and suspension_year because we have converted them to dichotomous by generating policy predictor variables at the previous step. 
+46 missing observations exist within the ODR outcomes and enrollment demographics respectively. 
+```{r}
+
+colSums(is.na(df))
+
+# Are there missing values of ORD_class?
+sum(is.na(df$ODR_class))
+# 46
+
+# Are there missing values of ORD_other?
+sum(is.na(df$ODR_other))
+# 46
+
+# Are there missing values of ORD_subjective?
+sum(is.na(df$ODR_objective))
+# 46
+
+# Are there missing values of ORD_objective?
+sum(is.na(df$ODR_objective))
+# 46
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
