@@ -9,20 +9,17 @@ EDLD 650 Advanced Seminar in Educational Research Methods\
 Professor: David D. Liebowitz\
 Apr 15, 2026
 
-## Data Analysis and Replication Exercise
+## Data Analysis and Replication Exercise (DARE) 01
 
-Data Analysis and Replication Exercises (DAREs) (4 DAREs, worth 10 points each for a total of 40 points): For each of the four units, you will complete a Data Analysis and Replication Exercise (DARE) that will require you to integrate statistical programming, methodological understanding and scholarly writing skills. In the preceding class, you will be provided with guidance and a detailed assignment that will entail familiarizing yourself with a replication dataset for one of the papers we have read. You will need to familiarize yourself with this small data set, produce a set of tables and figures that replicate some of the results from the paper, and write up your results in a memo following scholarly reporting standards. Each DARE will have a detailed assignment sheet and you will receive model responses after your work is submitted You will need to upload your work to Canvas by 11:59pm of the Tuesday in the week in which the DARE is due.
-
-### DARE 01
+### Introduction
 
 You will replicate and extend analysis from Liebowitz, Porter and Bragg. In the file EDLD 650 DARE 1.csv, you will find the variables listed in Table 1. These data have been aggregated to the state level and altered to preserve confidentiality; thus your results will diﬀer (slightly) from those in the paper. Please make sure that your graph axes are labeled, the variables in your tables have comprehensible labels, and your table notes are complete.\
 
 ```{r}
 # Load package
 library(pacman)
-p_load(here, tidyverse, lme4, haven)
+p_load(here, tidyverse, lme4, haven, fixest)
 ```
-
 
 ```{r}
 # Load the data
@@ -33,10 +30,7 @@ str(df)
 
 #### A. Data Management Tasks
 
-A1. Convert the raw counts of enrollment by race/ethnicity into percent-
-ages (i.e., divide the enrollment count for each ethno-racial category by
-total enrollment). For programming eﬃciency, can you use a function
-to do this task?
+A1. Convert the raw counts of enrollment by race/ethnicity into percent- ages (i.e., divide the enrollment count for each ethno-racial category by total enrollment). For programming eﬃciency, can you use a function to do this task?
 
 ```{r}
 df <- df %>% 
@@ -46,19 +40,23 @@ df <- df %>%
           enroll_HISP_percent = enroll_HISP/enroll,
           enroll_BLACK_percent = enroll_BLACK/enroll,
           enroll_WHITE_percent = enroll_WHITE/enroll)
+
+summary(df$enroll_AM_percent)
 ```
 
-A2. Generate dichotomous policy predictor variables that take the value
-of 1 in state-year observations in which the policy is in place. Call
-them eval, class remove and suspension. They should take the
-value of 0 in years during which these policies were not in place. Also,
-generate a running time variable (run time) that reflects how far or
-close the state-year observation is from the implementation of higher-
-stakes teacher evaluation and a variable that permits the eﬀects of the
-evaluation policy to vary (linearly) over time (evalXyear). How will
-you deal with states that never implement evaluation? Do that too.
+A2. Generate dichotomous policy predictor variables that take the value of 1 in state-year observations in which the policy is in place. Call them *eval*, *class_remove* and *suspension*. They should take the value of 0 in years during which these policies were not in place. Also, generate a running time variable (*run_time*) that reflects how far or close the state-year observation is from the implementation of higher- stakes teacher evaluation and a variable that permits the eﬀects of the evaluation policy to vary (linearly) over time (evalXyear). How will you deal with states that never implement evaluation? Do that too.
 
 ```{r}
-
+df <- df %>% 
+  mutate(
+    eval = case_when(!is.na(eval_year) & school_year >= eval_year ~ 1, TRUE ~ 0),
+    class_remove = case_when(!is.na(class_remove_year) & school_year >= class_remove_year ~ 1,
+                             TRUE ~ 0),
+         suspension = case_when(!is.na(suspension_year) & school_year >= suspension_year ~ 1, 
+                                TRUE ~ 0),
+         run_time = case_when(is.na(eval_year) ~ 0, 
+                              TRUE ~ as.numeric(school_year - eval_year)),
+         evalXyear = eval*run_time
+    
+  )
 ```
-
