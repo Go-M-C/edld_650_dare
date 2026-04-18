@@ -109,9 +109,14 @@ df_long <- df %>%
     values_to = "value"
   )
 
+# Standardized the scale of x-axis
+max_val <- max(df[c("ODR_class", "ODR_other", "ODR_subjective", "ODR_objective")], na.rm = TRUE)
+
 # Plot all four distributions side by side
+
 ggplot(df_long, aes(x = value)) +
   geom_histogram(bins = 40, fill = "steelblue", color = "white", na.rm = TRUE) +
+  xlim(0, max_val) +
   facet_wrap(~ outcome, scales = "free", ncol = 2) +
   labs(
     title = "Distribution of ODR outcome variables",
