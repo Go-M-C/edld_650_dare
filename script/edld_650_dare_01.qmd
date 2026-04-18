@@ -24,7 +24,7 @@ p_load(here, tidyverse, lme4, haven, fixest)
 ```{r}
 # Load the data
 df <- read_csv(here("data/EDLD_650_DARE_1.csv")) 
-str(df)
+# str(df)
 
 ```
 
