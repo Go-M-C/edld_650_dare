@@ -388,3 +388,4 @@ linear_odr2 <- feols(c(ODR_class, ODR_other, ODR_subjective, ODR_objective) ~ ev
 summary(linear_odr2)
 ```
 
+
