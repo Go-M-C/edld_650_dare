@@ -135,7 +135,7 @@ B3. *Answer*
 
 Our analytic sample would consists of all state‑year observations in the dataset with non‑missing enrollment and FRPL data, and the inferences apply to the population of public‑school students in the states and years represented in that sample.
 
-```{r}
+```{r warning=FALSE}
 
 library(tidyverse)
 library(here)
@@ -261,3 +261,74 @@ ft <- flextable(tbl) |>
 save_as_docx(ft, path = "dare1_table1.docx")
 ft
 ```
+
+B4. 
+**Answer**
+
+We notice that there is a downward secular trend in Average Office Disciplinary Referral rates prior to the policy implementation. This suggests that the ODRs rates were already declining. 
+
+
+```{r warning=FALSE}
+odr_rates <- df %>% 
+  mutate(
+    eval = case_when(!is.na(eval_year) & school_year >= eval_year ~ 1, TRUE ~ 0),
+    class_remove = case_when(!is.na(class_remove_year) & school_year >= class_remove_year ~ 1,
+                             TRUE ~ 0),
+    suspension = case_when(!is.na(suspension_year) & school_year >= suspension_year ~ 1, 
+                           TRUE ~ 0),
+    run_time = as.numeric(school_year - eval_year),
+    evalXyear = eval*run_time
+  )
+
+
+odr_rates <- odr_rates %>% 
+  filter(!is.na(eval_year)) %>% 
+  filter(run_time >= -5 & run_time <= 2) %>% 
+  group_by(run_time) %>% 
+  summarise(
+    class = mean(ODR_class, na.rm = TRUE),
+    other = mean(ODR_other, na.rm = TRUE),
+    
+    subjective = mean(ODR_subjective, na.rm = TRUE),
+    objective = mean(ODR_objective, na.rm = TRUE),
+    .groups = "drop"
+  ) %>% 
+  pivot_longer(cols = -run_time, names_to = "measure", values_to = "rate") %>% 
+  mutate(
+    panel = case_when(
+      measure %in% c("class","other") ~ "Panel A. Location of ODR",
+      measure %in% c("subjective", "objective") ~ "Panel B. Objectivity of ODR"
+    ), 
+    measure = case_when(
+      measure == "class" ~ "Class Origin",
+      measure == "other" ~ "Other Origin",
+      measure == "subjective" ~ "Class Origin, Subjective",
+      measure == "objective" ~ "Class Origin, Objective"
+    )
+  )
+  
+# Panel Plot #
+plot_1 <- odr_rates %>% 
+  ggplot(aes(x = run_time, y = rate, colour = measure, shape = measure)) +
+  geom_point(size = 2.5) +
+  geom_smooth(data = filter(odr_rates, run_time < 0),
+              method = "lm", se = FALSE, size = 0.8) +
+  geom_smooth(data = filter(odr_rates, run_time >= 0),
+              method = "lm", se = FALSE, size = 0.8) +
+  geom_vline(xintercept = -0.5, linetype = "dashed", color = "grey35") +
+  facet_wrap(~panel, ncol = 1, scales = "free_y") +
+  scale_x_continuous(breaks = -5:2) +
+  theme_bw()+
+  theme(
+    legend.position = "bottom"
+  ) +
+  labs(
+    x = "Time to Eval Policy",
+    y = "ODR per 500 stu",
+    color = NULL, shape = NULL
+  )
+  
+  
+plot_1
+```
+
