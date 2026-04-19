@@ -93,7 +93,7 @@ sum(is.na(df$ODR_objective))
 
 B2. Graphically display the distribution of the outcome data. What do you notice about the distribution of outcomes? Are there any actions,transformations or sensitivity tests you would like to conduct based on this evidence?
 
-*Answer:* The outcomes are highly right-skewed, with most values near zero. we would use a two-way fixed-effects Difference-in-Differences (DiD) model to estimate changes within units over time while controlling for unit and time effects, and would check if results are not due to the outcome’s skewness.
+**Answer:** The outcomes are highly right-skewed, with most values near zero. we would use a two-way fixed-effects Difference-in-Differences (DiD) model to estimate changes within units over time while controlling for unit and time effects, and would check if results are not due to the outcome’s skewness.
 
 ```{r}
 library(ggplot2)
@@ -131,7 +131,8 @@ ggplot(df_long, aes(x = value)) +
 
 ```
 
-B3. *Answer*
+B3. 
+**Answer**
 
 Our analytic sample would consists of all state‑year observations in the dataset with non‑missing enrollment and FRPL data, and the inferences apply to the population of public‑school students in the states and years represented in that sample.
 
@@ -333,3 +334,4 @@ plot_1 <- odr_rates %>%
 plot_1
 ```
 
+#### C. Replication and Extension 
