@@ -333,7 +333,8 @@ plot_1
 #### C. Replication and Extension
 
 C1.1 Weighted Two-Way Fixed Effects Model\
-**Summary of ols_odr1 model**
+**Summary of model_1**\
+
 
 ```{r}
 df_model <- read_csv(here("data/EDLD_650_DARE_1.csv")) 
@@ -371,4 +372,19 @@ ols_odr1 <- feols(c(ODR_class, ODR_other, ODR_subjective, ODR_objective) ~ eval 
 summary(ols_odr1)
 ```
 
-C1.2
+C1.2 Relaxed/Linear Effects\
+
+**Summary of model_2**\
+
+
+```{r}
+linear_odr2 <- feols(c(ODR_class, ODR_other, ODR_subjective, ODR_objective) ~ eval +
+                       evalXyear + pct_enroll_HISP + pct_enroll_AM + pct_enroll_ASIAN +
+                       pct_enroll_BLACK + pct_enroll_other | state_id + school_year,
+                       data = df_model,
+                       weights = ~enroll,
+                       cluster = ~state_id
+)
+summary(linear_odr2)
+```
+
