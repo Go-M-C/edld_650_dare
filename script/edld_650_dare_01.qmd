@@ -131,8 +131,7 @@ ggplot(df_long, aes(x = value)) +
 
 ```
 
-B3. 
-**Answer**
+B3. **Answer**
 
 Our analytic sample would consists of all state‑year observations in the dataset with non‑missing enrollment and FRPL data, and the inferences apply to the population of public‑school students in the states and years represented in that sample.
 
@@ -263,12 +262,9 @@ save_as_docx(ft, path = "dare1_table1.docx")
 ft
 ```
 
-B4. 
-**Answer**
+B4. **Answer**
 
-We notice that there is a downward secular trend in Average Office Disciplinary Referral rates prior to the policy implementation. This suggests that the ODRs rates were already declining. 
-We would like to conduct event study based on this evidence, which will help us to check the parallel trends assumption. When using event study, it will help to convert binary variable into dummy variables. 
-we stress plotting these raw averages only for states that implemented evaluation reform because we need to look at the patterns of ODR trends when the policy enacts. We need to identify whether there is a sudden jump displays in the trends.
+We notice that there is a downward secular trend in Average Office Disciplinary Referral rates prior to the policy implementation. This suggests that the ODRs rates were already declining. We would like to conduct event study based on this evidence, which will help us to check the parallel trends assumption. When using event study, it will help to convert binary variable into dummy variables. we stress plotting these raw averages only for states that implemented evaluation reform because we need to look at the patterns of ODR trends when the policy enacts. We need to identify whether there is a sudden jump displays in the trends.
 
 ```{r warning=FALSE}
 odr_rates <- df %>% 
@@ -334,4 +330,45 @@ plot_1 <- odr_rates %>%
 plot_1
 ```
 
-#### C. Replication and Extension 
+#### C. Replication and Extension
+
+C1.1 Weighted Two-Way Fixed Effects Model\
+**Summary of ols_odr1 model**
+
+```{r}
+df_model <- read_csv(here("data/EDLD_650_DARE_1.csv")) 
+
+df_model <- df_model %>% 
+  mutate(pct_enroll_other = enroll_OTHER/enroll,
+         pct_enroll_AM = enroll_AM/enroll,
+         pct_enroll_ASIAN = enroll_ASIAN/enroll,
+         pct_enroll_HISP = enroll_HISP/enroll,
+         pct_enroll_BLACK = enroll_BLACK/enroll,
+         pct_enroll_WHITE = enroll_WHITE/enroll
+         )
+
+
+df_model <- df_model %>% 
+  filter(!is.na(ODR_class)) %>% 
+  mutate(
+    eval = case_when(!is.na(eval_year) & school_year >= eval_year ~ 1, TRUE ~ 0),
+    class_remove = case_when(!is.na(class_remove_year) & school_year >= class_remove_year ~ 1,
+                             TRUE ~ 0),
+    suspension = case_when(!is.na(suspension_year) & school_year >= suspension_year ~ 1, 
+                           TRUE ~ 0),
+    run_time = case_when(is.na(eval_year) ~ 0, 
+                         TRUE ~ as.numeric(school_year - eval_year)),
+    evalXyear = eval*run_time
+  )
+
+ols_odr1 <- feols(c(ODR_class, ODR_other, ODR_subjective, ODR_objective) ~ eval + 
+                    pct_enroll_HISP + pct_enroll_AM + pct_enroll_ASIAN +
+                    pct_enroll_BLACK + pct_enroll_other |
+                    state_id + school_year,
+                    data = df_model,
+                    weights = ~enroll,
+                    cluster = ~state_id)
+summary(ols_odr1)
+```
+
+C1.2
