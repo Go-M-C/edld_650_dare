@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,7 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="edld_650_dare_01_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="edld_650_dare_01_files/libs/quarto-html/anchor.min.js"></script>
 <link href="edld_650_dare_01_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="edld_650_dare_01_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="edld_650_dare_01_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="edld_650_dare_01_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="edld_650_dare_01_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="edld_650_dare_01_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -243,14 +243,14 @@ enroll_WHITE_percent                 eval         class_remove
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"value"</span></span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardized the scale of x-axis</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>max_val <span class="ot">&lt;-</span> <span class="fu">max</span>(df[<span class="fu">c</span>(<span class="st">"ODR_class"</span>, <span class="st">"ODR_other"</span>, <span class="st">"ODR_subjective"</span>, <span class="st">"ODR_objective"</span>)], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot all four distributions side by side</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, max_val) <span class="sc">+</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot distributions of the four ODR outcomes</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">bins =</span> <span class="dv">40</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"steelblue"</span>,</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> outcome, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">ncol =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of ODR outcome variables"</span>,</span>
@@ -273,9 +273,10 @@ enroll_WHITE_percent                 eval         class_remove
 <p>B3. <strong>Answer</strong></p>
 <p>Our analytic sample would consists of all state‑year observations in the dataset with non‑missing enrollment and FRPL data, and the inferences apply to the population of public‑school students in the states and years represented in that sample.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required packages</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(flextable)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'flextable'</code></pre>
@@ -287,16 +288,21 @@ Attaching package: 'flextable'</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(officer)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 1. Analytic sample -----------------------------------------------------</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Analytic sample </span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/EDLD_650_DARE_1.csv"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(enroll), <span class="sc">!</span><span class="fu">is.na</span>(FRPL_percent)) <span class="sc">|&gt;</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_AM    =</span> enroll_AM    <span class="sc">/</span> enroll,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_ASIAN =</span> enroll_ASIAN <span class="sc">/</span> enroll,</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_BLACK =</span> enroll_BLACK <span class="sc">/</span> enroll,</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_HISP  =</span> enroll_HISP  <span class="sc">/</span> enroll,</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_WHITE =</span> enroll_WHITE <span class="sc">/</span> enroll</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(ODR_class),</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(ODR_other),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(ODR_subjective),</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(ODR_objective)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_AM    =</span> enroll_AM    <span class="sc">/</span> enroll,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_ASIAN =</span> enroll_ASIAN <span class="sc">/</span> enroll,</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_BLACK =</span> enroll_BLACK <span class="sc">/</span> enroll,</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_HISP  =</span> enroll_HISP  <span class="sc">/</span> enroll,</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_WHITE =</span> enroll_WHITE <span class="sc">/</span> enroll</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 516 Columns: 19</code></pre>
 </div>
@@ -309,7 +315,7 @@ dbl (18): school_year, state_id, eval_year, class_remove_year, suspension_ye...
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 2. Enrollment-weighted yearly averages ---------------------------------</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  2. Enrollment-weighted yearly averages </span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>wt_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FRPL_percent"</span>,</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pct_AM"</span>, <span class="st">"pct_ASIAN"</span>, <span class="st">"pct_BLACK"</span>, <span class="st">"pct_HISP"</span>, <span class="st">"pct_WHITE"</span>,</span>
@@ -328,162 +334,169 @@ dbl (18): school_year, state_id, eval_year, class_remove_year, suspension_ye...
 <span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
 <span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 3. Mean &amp; SD across yearly weighted averages ---------------------------</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Mean &amp; SD across yearly weighted averages </span></span>
 <span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>stats <span class="ot">&lt;-</span> year_avgs <span class="sc">|&gt;</span></span>
 <span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
 <span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">all_of</span>(wt_vars), <span class="fu">list</span>(<span class="at">mean =</span> mean, <span class="at">sd =</span> sd), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 4. Formatting helper ---------------------------------------------------</span></span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>fmt <span class="ot">&lt;-</span> <span class="cf">function</span>(x, digits) {</span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatC</span>(<span class="fu">round</span>(x, digits), <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> digits, <span class="at">big.mark =</span> <span class="st">","</span>)</span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 5. Assemble table ------------------------------------------------------</span></span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">Characteristic =</span> <span class="fu">c</span>(</span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Enrollment"</span>,</span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Mean state-year enrollment"</span>,</span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Mean year enrollment"</span>,</span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"School characteristics"</span>,</span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % Low-income (FRPL)"</span>,</span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % Am. Indian/Alask. Native"</span>,</span>
-<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % Asian/PI"</span>,</span>
-<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % Black"</span>,</span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % Hispanic"</span>,</span>
-<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % White"</span>,</span>
-<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % PBIS successfully implemented"</span>,</span>
-<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Grade-level ODR outcomes (per 500 students, per day)"</span>,</span>
-<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Classroom ODR rate"</span>,</span>
-<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Other location ODR rate"</span>,</span>
-<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Subjective-Classroom ODR rate"</span>,</span>
-<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Objective-Classroom ODR rate"</span></span>
-<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">c</span>(</span>
-<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
-<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(<span class="fu">mean</span>(df<span class="sc">$</span>enroll),                <span class="dv">0</span>), <span class="fu">fmt</span>(<span class="fu">mean</span>(year_avgs<span class="sc">$</span>enroll_total), <span class="dv">0</span>),</span>
-<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
-<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>FRPL_percent_mean,        <span class="dv">2</span>), <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_AM_mean,            <span class="dv">2</span>),</span>
-<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_ASIAN_mean,           <span class="dv">2</span>), <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_BLACK_mean,         <span class="dv">2</span>),</span>
-<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_HISP_mean,            <span class="dv">2</span>), <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_WHITE_mean,         <span class="dv">2</span>),</span>
-<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>PBIS_mean,                <span class="dv">2</span>),</span>
-<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
-<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_class_mean,           <span class="dv">2</span>), <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_other_mean,         <span class="dv">2</span>),</span>
-<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_subjective_mean,      <span class="dv">2</span>), <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_objective_mean,     <span class="dv">2</span>)</span>
-<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">c</span>(</span>
-<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
-<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(<span class="fu">sd</span>(df<span class="sc">$</span>enroll),                  <span class="dv">0</span>), <span class="fu">fmt</span>(<span class="fu">sd</span>(year_avgs<span class="sc">$</span>enroll_total),   <span class="dv">0</span>),</span>
-<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
-<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>FRPL_percent_sd,          <span class="dv">2</span>), <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_AM_sd,              <span class="dv">2</span>),</span>
-<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_ASIAN_sd,             <span class="dv">2</span>), <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_BLACK_sd,           <span class="dv">2</span>),</span>
-<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_HISP_sd,              <span class="dv">2</span>), <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_WHITE_sd,           <span class="dv">2</span>),</span>
-<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>PBIS_sd,                  <span class="dv">2</span>),</span>
-<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
-<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_class_sd,             <span class="dv">2</span>), <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_other_sd,           <span class="dv">2</span>),</span>
-<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_subjective_sd,        <span class="dv">2</span>), <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_objective_sd,       <span class="dv">2</span>)</span>
-<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a>header_rows <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(tbl<span class="sc">$</span>Mean))</span>
-<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 6. Build flextable -----------------------------------------------------</span></span>
-<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a>caption <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Full Sample  (N = "</span>, <span class="fu">nrow</span>(df), <span class="st">" state-year observations; "</span>,</span>
-<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(df<span class="sc">$</span>state_abbrev), <span class="st">" states; "</span>,</span>
-<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">min</span>(df<span class="sc">$</span>school_year), <span class="st">"–"</span>, <span class="fu">max</span>(df<span class="sc">$</span>school_year), <span class="st">")"</span></span>
-<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a>ft <span class="ot">&lt;-</span> <span class="fu">flextable</span>(tbl) <span class="sc">|&gt;</span></span>
-<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_header_labels</span>(<span class="at">Characteristic =</span> <span class="st">"Characteristic"</span>, <span class="at">Mean =</span> <span class="st">"Mean"</span>, <span class="at">SD =</span> <span class="st">"SD"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_row</span>(<span class="at">values =</span> <span class="fu">c</span>(caption, <span class="st">""</span>, <span class="st">""</span>), <span class="at">colwidths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold</span>(<span class="at">i =</span> header_rows, <span class="at">part =</span> <span class="st">"body"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-90"><a href="#cb26-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bg</span>(<span class="at">i =</span> header_rows, <span class="at">bg =</span> <span class="st">"#F2F2F2"</span>, <span class="at">part =</span> <span class="st">"body"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hline</span>(</span>
-<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">i      =</span> header_rows[header_rows <span class="sc">&gt;</span> <span class="dv">1</span>] <span class="sc">-</span> <span class="dv">1</span>,</span>
-<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">border =</span> <span class="fu">fp_border_default</span>(<span class="at">width =</span> <span class="fl">0.5</span>),</span>
-<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">part   =</span> <span class="st">"body"</span></span>
-<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">align</span>(<span class="at">j =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">align =</span> <span class="st">"center"</span>, <span class="at">part =</span> <span class="st">"all"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">align</span>(<span class="at">j =</span> <span class="dv">1</span>,   <span class="at">align =</span> <span class="st">"left"</span>,   <span class="at">part =</span> <span class="st">"all"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-98"><a href="#cb26-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">width</span>(<span class="at">j =</span> <span class="dv">1</span>,   <span class="at">width =</span> <span class="fl">3.4</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">width</span>(<span class="at">j =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">width =</span> <span class="fl">0.9</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-100"><a href="#cb26-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">font</span>(<span class="at">fontname =</span> <span class="st">"Times New Roman"</span>, <span class="at">part =</span> <span class="st">"all"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-101"><a href="#cb26-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fontsize</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">part =</span> <span class="st">"all"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-102"><a href="#cb26-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold</span>(<span class="at">part =</span> <span class="st">"header"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-103"><a href="#cb26-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_booktabs</span>()</span>
-<span id="cb26-104"><a href="#cb26-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-105"><a href="#cb26-105" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- 7. Save and display ----------------------------------------------------</span></span>
-<span id="cb26-106"><a href="#cb26-106" aria-hidden="true" tabindex="-1"></a><span class="fu">save_as_docx</span>(ft, <span class="at">path =</span> <span class="st">"dare1_table1.docx"</span>)</span>
-<span id="cb26-107"><a href="#cb26-107" aria-hidden="true" tabindex="-1"></a>ft</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There was 1 warning in `summarise()`.
+ℹ In argument: `across(all_of(wt_vars), list(mean = mean, sd = sd), na.rm =
+  TRUE)`.
+Caused by warning:
+! The `...` argument of `across()` is deprecated as of dplyr 1.1.0.
+Supply arguments directly to `.fns` through an anonymous function instead.
+
+  # Previously
+  across(a:b, mean, na.rm = TRUE)
+
+  # Now
+  across(a:b, \(x) mean(x, na.rm = TRUE))</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Formatting helper </span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>fmt <span class="ot">&lt;-</span> <span class="cf">function</span>(x, digits) {</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">formatC</span>(<span class="fu">round</span>(x, digits), <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> digits, <span class="at">big.mark =</span> <span class="st">","</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Assemble table </span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Characteristic =</span> <span class="fu">c</span>(</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Enrollment"</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Mean state-level enrollment"</span>,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Mean state-year enrollment"</span>,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"School characteristics"</span>,</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % Low-income (FRPL)"</span>,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % Am. Indian/Alask. Native"</span>,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % Asian/PI"</span>,</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % Black"</span>,</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % Hispanic"</span>,</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % White"</span>,</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  % PBIS successfully implemented"</span>,</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Grade-level ODR outcomes (per 500 students, per day)"</span>,</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Classroom ODR rate"</span>,</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Other location ODR rate"</span>,</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Subjective-classroom ODR rate"</span>,</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"  Objective-classroom ODR rate"</span></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">c</span>(</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(<span class="fu">mean</span>(df<span class="sc">$</span>enroll),              <span class="dv">0</span>),</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(<span class="fu">mean</span>(year_avgs<span class="sc">$</span>enroll_total), <span class="dv">0</span>),</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>FRPL_percent_mean,      <span class="dv">2</span>),</span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_AM_mean,            <span class="dv">2</span>),</span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_ASIAN_mean,         <span class="dv">2</span>),</span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_BLACK_mean,         <span class="dv">2</span>),</span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_HISP_mean,          <span class="dv">2</span>),</span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_WHITE_mean,         <span class="dv">2</span>),</span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>PBIS_mean,              <span class="dv">2</span>),</span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_class_mean,         <span class="dv">2</span>),</span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_other_mean,         <span class="dv">2</span>),</span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_subjective_mean,    <span class="dv">2</span>),</span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_objective_mean,     <span class="dv">2</span>)</span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">c</span>(</span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
+<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(<span class="fu">sd</span>(df<span class="sc">$</span>enroll),                <span class="dv">0</span>),</span>
+<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(<span class="fu">sd</span>(year_avgs<span class="sc">$</span>enroll_total),   <span class="dv">0</span>),</span>
+<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
+<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>FRPL_percent_sd,        <span class="dv">2</span>),</span>
+<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_AM_sd,              <span class="dv">2</span>),</span>
+<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_ASIAN_sd,           <span class="dv">2</span>),</span>
+<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_BLACK_sd,           <span class="dv">2</span>),</span>
+<span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_HISP_sd,            <span class="dv">2</span>),</span>
+<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>pct_WHITE_sd,           <span class="dv">2</span>),</span>
+<span id="cb28-55"><a href="#cb28-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>PBIS_sd,                <span class="dv">2</span>),</span>
+<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NA</span>,</span>
+<span id="cb28-57"><a href="#cb28-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_class_sd,           <span class="dv">2</span>),</span>
+<span id="cb28-58"><a href="#cb28-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_other_sd,           <span class="dv">2</span>),</span>
+<span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_subjective_sd,      <span class="dv">2</span>),</span>
+<span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fmt</span>(stats<span class="sc">$</span>ODR_objective_sd,       <span class="dv">2</span>)</span>
+<span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-63"><a href="#cb28-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-64"><a href="#cb28-64" aria-hidden="true" tabindex="-1"></a><span class="co">#  6. Build flextable </span></span>
+<span id="cb28-65"><a href="#cb28-65" aria-hidden="true" tabindex="-1"></a>header_rows <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">is.na</span>(tbl<span class="sc">$</span>Mean))</span>
+<span id="cb28-66"><a href="#cb28-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-67"><a href="#cb28-67" aria-hidden="true" tabindex="-1"></a>caption <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb28-68"><a href="#cb28-68" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Full Sample (N = "</span>, <span class="fu">nrow</span>(df), <span class="st">" state-year observations; "</span>,</span>
+<span id="cb28-69"><a href="#cb28-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">n_distinct</span>(df<span class="sc">$</span>state_abbrev), <span class="st">" states; "</span>,</span>
+<span id="cb28-70"><a href="#cb28-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">min</span>(df<span class="sc">$</span>school_year), <span class="st">"–"</span>, <span class="fu">max</span>(df<span class="sc">$</span>school_year), <span class="st">")"</span></span>
+<span id="cb28-71"><a href="#cb28-71" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-72"><a href="#cb28-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-73"><a href="#cb28-73" aria-hidden="true" tabindex="-1"></a>ft <span class="ot">&lt;-</span> <span class="fu">flextable</span>(tbl) <span class="sc">|&gt;</span></span>
+<span id="cb28-74"><a href="#cb28-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_row</span>(<span class="at">values =</span> <span class="fu">c</span>(caption, <span class="st">""</span>, <span class="st">""</span>), <span class="at">colwidths =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb28-75"><a href="#cb28-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold</span>(<span class="at">i =</span> header_rows, <span class="at">part =</span> <span class="st">"body"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-76"><a href="#cb28-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bg</span>(<span class="at">i =</span> header_rows, <span class="at">bg =</span> <span class="st">"#F2F2F2"</span>, <span class="at">part =</span> <span class="st">"body"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-77"><a href="#cb28-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">align</span>(<span class="at">j =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">align =</span> <span class="st">"center"</span>, <span class="at">part =</span> <span class="st">"all"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-78"><a href="#cb28-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">align</span>(<span class="at">j =</span> <span class="dv">1</span>, <span class="at">align =</span> <span class="st">"left"</span>, <span class="at">part =</span> <span class="st">"all"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-79"><a href="#cb28-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_booktabs</span>()</span>
+<span id="cb28-80"><a href="#cb28-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-81"><a href="#cb28-81" aria-hidden="true" tabindex="-1"></a><span class="co">#  7. Save and display </span></span>
+<span id="cb28-82"><a href="#cb28-82" aria-hidden="true" tabindex="-1"></a><span class="fu">save_as_docx</span>(ft, <span class="at">path =</span> <span class="st">"dare1_table1.docx"</span>)</span>
+<span id="cb28-83"><a href="#cb28-83" aria-hidden="true" tabindex="-1"></a>ft</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-39f0f668{}.cl-39ee2d2a{font-family:'Times New Roman';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-39ee2d34{font-family:'Times New Roman';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-39ef4b1a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-39ef5556{width:3.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39ef5557{width:0.9in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39ef5560{width:3.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39ef5561{width:0.9in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39ef5562{width:3.4in;background-color:rgba(242, 242, 242, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39ef5563{width:0.9in;background-color:rgba(242, 242, 242, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39ef556a{width:3.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39ef556b{width:0.9in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39ef556c{width:3.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39ef5574{width:0.9in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-39f0f668"><thead><tr style="overflow-wrap:break-word;"><th class="cl-39ef5556"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">Full Sample  (N = 470 state-year observations; 43 states; 2006–2017)</span></p></th><th class="cl-39ef5557"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a"></span></p></th><th class="cl-39ef5557"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-39ef5560"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">Characteristic</span></p></th><th class="cl-39ef5561"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">Mean</span></p></th><th class="cl-39ef5561"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">SD</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-39ef5562"><p class="cl-39ef4b1a"><span class="cl-39ee2d34">Enrollment</span></p></td><td class="cl-39ef5563"><p class="cl-39ef4b1a"><span class="cl-39ee2d34"></span></p></td><td class="cl-39ef5563"><p class="cl-39ef4b1a"><span class="cl-39ee2d34"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  Mean state-year enrollment</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">21,897</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">32,426</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  Mean year enrollment</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">857,649</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">260,800</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef5562"><p class="cl-39ef4b1a"><span class="cl-39ee2d34">School characteristics</span></p></td><td class="cl-39ef5563"><p class="cl-39ef4b1a"><span class="cl-39ee2d34"></span></p></td><td class="cl-39ef5563"><p class="cl-39ef4b1a"><span class="cl-39ee2d34"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  % Low-income (FRPL)</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.54</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  % Am. Indian/Alask. Native</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.01</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  % Asian/PI</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.05</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.01</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  % Black</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.14</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.02</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  % Hispanic</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.18</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  % White</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.55</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.02</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  % PBIS successfully implemented</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.77</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.18</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef5562"><p class="cl-39ef4b1a"><span class="cl-39ee2d34">Grade-level ODR outcomes (per 500 students, per day)</span></p></td><td class="cl-39ef5563"><p class="cl-39ef4b1a"><span class="cl-39ee2d34"></span></p></td><td class="cl-39ef5563"><p class="cl-39ef4b1a"><span class="cl-39ee2d34"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  Classroom ODR rate</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">1.40</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.15</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  Other location ODR rate</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">1.34</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.13</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556a"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  Subjective-Classroom ODR rate</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.88</span></p></td><td class="cl-39ef556b"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.11</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-39ef556c"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">  Objective-Classroom ODR rate</span></p></td><td class="cl-39ef5574"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.54</span></p></td><td class="cl-39ef5574"><p class="cl-39ef4b1a"><span class="cl-39ee2d2a">0.06</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-adfe9c70{}.cl-adeebb84{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-adeebb8e{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-adf4f3b4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-adf54788{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-adf5479c{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-adf547a6{width:0.75in;background-color:rgba(242, 242, 242, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-adf547a7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-adf547b0{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-adfe9c70"><thead><tr style="overflow-wrap:break-word;"><th class="cl-adf54788"><p class="cl-adf4f3b4"><span class="cl-adeebb84">Full Sample (N = 470 state-year observations; 43 states; 2006–2017)</span></p></th><th class="cl-adf54788"><p class="cl-adf4f3b4"><span class="cl-adeebb84"></span></p></th><th class="cl-adf54788"><p class="cl-adf4f3b4"><span class="cl-adeebb84"></span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-adf5479c"><p class="cl-adf4f3b4"><span class="cl-adeebb84">Characteristic</span></p></th><th class="cl-adf5479c"><p class="cl-adf4f3b4"><span class="cl-adeebb84">Mean</span></p></th><th class="cl-adf5479c"><p class="cl-adf4f3b4"><span class="cl-adeebb84">SD</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-adf547a6"><p class="cl-adf4f3b4"><span class="cl-adeebb8e">Enrollment</span></p></td><td class="cl-adf547a6"><p class="cl-adf4f3b4"><span class="cl-adeebb8e"></span></p></td><td class="cl-adf547a6"><p class="cl-adf4f3b4"><span class="cl-adeebb8e"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  Mean state-level enrollment</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">21,897</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">32,426</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  Mean state-year enrollment</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">857,649</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">260,800</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a6"><p class="cl-adf4f3b4"><span class="cl-adeebb8e">School characteristics</span></p></td><td class="cl-adf547a6"><p class="cl-adf4f3b4"><span class="cl-adeebb8e"></span></p></td><td class="cl-adf547a6"><p class="cl-adf4f3b4"><span class="cl-adeebb8e"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  % Low-income (FRPL)</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.54</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  % Am. Indian/Alask. Native</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.01</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.00</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  % Asian/PI</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.05</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.01</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  % Black</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.14</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.02</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  % Hispanic</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.18</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  % White</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.55</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.02</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  % PBIS successfully implemented</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.77</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.18</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a6"><p class="cl-adf4f3b4"><span class="cl-adeebb8e">Grade-level ODR outcomes (per 500 students, per day)</span></p></td><td class="cl-adf547a6"><p class="cl-adf4f3b4"><span class="cl-adeebb8e"></span></p></td><td class="cl-adf547a6"><p class="cl-adf4f3b4"><span class="cl-adeebb8e"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  Classroom ODR rate</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">1.40</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.15</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  Other location ODR rate</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">1.34</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.13</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  Subjective-classroom ODR rate</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.88</span></p></td><td class="cl-adf547a7"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.11</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-adf547b0"><p class="cl-adf4f3b4"><span class="cl-adeebb84">  Objective-classroom ODR rate</span></p></td><td class="cl-adf547b0"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.54</span></p></td><td class="cl-adf547b0"><p class="cl-adf4f3b4"><span class="cl-adeebb84">0.06</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 <p>B4. <strong>Answer</strong></p>
 <p>We notice that there is a downward secular trend in Average Office Disciplinary Referral rates prior to the policy implementation. This suggests that the ODRs rates were already declining. We would like to conduct event study based on this evidence, which will help us to check the parallel trends assumption. When using event study, it will help to convert binary variable into dummy variables. we stress plotting these raw averages only for states that implemented evaluation reform because we need to look at the patterns of ODR trends when the policy enacts. We need to identify whether there is a sudden jump displays in the trends.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>odr_rates <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">eval =</span> <span class="fu">case_when</span>(<span class="sc">!</span><span class="fu">is.na</span>(eval_year) <span class="sc">&amp;</span> school_year <span class="sc">&gt;=</span> eval_year <span class="sc">~</span> <span class="dv">1</span>, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">class_remove =</span> <span class="fu">case_when</span>(<span class="sc">!</span><span class="fu">is.na</span>(class_remove_year) <span class="sc">&amp;</span> school_year <span class="sc">&gt;=</span> class_remove_year <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">suspension =</span> <span class="fu">case_when</span>(<span class="sc">!</span><span class="fu">is.na</span>(suspension_year) <span class="sc">&amp;</span> school_year <span class="sc">&gt;=</span> suspension_year <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">run_time =</span> <span class="fu">as.numeric</span>(school_year <span class="sc">-</span> eval_year),</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">evalXyear =</span> eval<span class="sc">*</span>run_time</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>odr_rates <span class="ot">&lt;-</span> odr_rates <span class="sc">%&gt;%</span> </span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(eval_year)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(run_time <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">5</span> <span class="sc">&amp;</span> run_time <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(run_time) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">class =</span> <span class="fu">mean</span>(ODR_class, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">other =</span> <span class="fu">mean</span>(ODR_other, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">subjective =</span> <span class="fu">mean</span>(ODR_subjective, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">objective =</span> <span class="fu">mean</span>(ODR_objective, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>run_time, <span class="at">names_to =</span> <span class="st">"measure"</span>, <span class="at">values_to =</span> <span class="st">"rate"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel =</span> <span class="fu">case_when</span>(</span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"class"</span>,<span class="st">"other"</span>) <span class="sc">~</span> <span class="st">"Panel A. Location of ODR"</span>,</span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"subjective"</span>, <span class="st">"objective"</span>) <span class="sc">~</span> <span class="st">"Panel B. Objectivity of ODR"</span></span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>    ), </span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure =</span> <span class="fu">case_when</span>(</span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"class"</span> <span class="sc">~</span> <span class="st">"Class Origin"</span>,</span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"other"</span> <span class="sc">~</span> <span class="st">"Other Origin"</span>,</span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"subjective"</span> <span class="sc">~</span> <span class="st">"Class Origin, Subjective"</span>,</span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"objective"</span> <span class="sc">~</span> <span class="st">"Class Origin, Objective"</span></span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Panel Plot #</span></span>
-<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>plot_1 <span class="ot">&lt;-</span> odr_rates <span class="sc">%&gt;%</span> </span>
-<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> run_time, <span class="at">y =</span> rate, <span class="at">colour =</span> measure, <span class="at">shape =</span> measure)) <span class="sc">+</span></span>
-<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
-<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(odr_rates, run_time <span class="sc">&lt;</span> <span class="dv">0</span>),</span>
-<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">data =</span> <span class="fu">filter</span>(odr_rates, run_time <span class="sc">&gt;=</span> <span class="dv">0</span>),</span>
-<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a>              <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey35"</span>) <span class="sc">+</span></span>
-<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>panel, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Time to Eval Policy"</span>,</span>
-<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"ODR per 500 stu"</span>,</span>
-<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">shape =</span> <span class="cn">NULL</span></span>
-<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a>plot_1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>odr_rates <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">run_time =</span> <span class="fu">as.numeric</span>(school_year <span class="sc">-</span> eval_year)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(eval_year)) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(run_time <span class="sc">&gt;=</span> <span class="sc">-</span><span class="dv">5</span> <span class="sc">&amp;</span> run_time <span class="sc">&lt;=</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(run_time) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">class      =</span> <span class="fu">mean</span>(ODR_class, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">other      =</span> <span class="fu">mean</span>(ODR_other, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">subjective =</span> <span class="fu">mean</span>(ODR_subjective, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">objective  =</span> <span class="fu">mean</span>(ODR_objective, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>run_time, <span class="at">names_to =</span> <span class="st">"measure"</span>, <span class="at">values_to =</span> <span class="st">"rate"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel =</span> <span class="fu">case_when</span>(</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"class"</span>, <span class="st">"other"</span>) <span class="sc">~</span> <span class="st">"Panel A. Location of ODR"</span>,</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"subjective"</span>, <span class="st">"objective"</span>) <span class="sc">~</span> <span class="st">"Panel B. Objectivity of ODR"</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>    ), </span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">measure =</span> <span class="fu">case_when</span>(</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"class"</span>      <span class="sc">~</span> <span class="st">"Class Origin"</span>,</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"other"</span>      <span class="sc">~</span> <span class="st">"Other Origin"</span>,</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"subjective"</span> <span class="sc">~</span> <span class="st">"Class Origin, Subjective"</span>,</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>      measure <span class="sc">==</span> <span class="st">"objective"</span>  <span class="sc">~</span> <span class="st">"Class Origin, Objective"</span></span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>plot_1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(odr_rates, <span class="fu">aes</span>(<span class="at">x =</span> run_time, <span class="at">y =</span> rate, <span class="at">colour =</span> measure, <span class="at">shape =</span> measure)) <span class="sc">+</span></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(odr_rates, run_time <span class="sc">&lt;</span> <span class="dv">0</span>),</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">0.8</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">filter</span>(odr_rates, run_time <span class="sc">&gt;=</span> <span class="dv">0</span>),</span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">0.8</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey35"</span>) <span class="sc">+</span></span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> panel, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="sc">-</span><span class="dv">5</span><span class="sc">:</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Time Relative to Evaluation Policy"</span>,</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"ODR per 500 students"</span>,</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="cn">NULL</span></span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>plot_1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'
 `geom_smooth()` using formula = 'y ~ x'</code></pre>
@@ -499,11 +512,36 @@ dbl (18): school_year, state_id, eval_year, class_remove_year, suspension_ye...
 </section>
 <section id="c.-replication-and-extension" class="level4">
 <h4 class="anchored" data-anchor-id="c.-replication-and-extension">C. Replication and Extension</h4>
-<p>C1.1 Weighted Two-Way Fixed Effects Model<br>
-<strong>Summary of model_1</strong><br>
-</p>
+<p>C1.a Weighted Two-Way Fixed Effects Model<br>
+<strong>Summary of model_1</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df_model <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/EDLD_650_DARE_1.csv"</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df_model <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/EDLD_650_DARE_1.csv"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_enroll_other =</span> enroll_OTHER <span class="sc">/</span> enroll,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_enroll_AM    =</span> enroll_AM    <span class="sc">/</span> enroll,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_enroll_ASIAN =</span> enroll_ASIAN <span class="sc">/</span> enroll,</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_enroll_HISP  =</span> enroll_HISP  <span class="sc">/</span> enroll,</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_enroll_BLACK =</span> enroll_BLACK <span class="sc">/</span> enroll,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_enroll_WHITE =</span> enroll_WHITE <span class="sc">/</span> enroll</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Restrict to state-years with non-missing outcomes</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(ODR_class),</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(ODR_other),</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(ODR_subjective),</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(ODR_objective)</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">eval =</span> <span class="fu">case_when</span>(</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(eval_year) <span class="sc">&amp;</span> school_year <span class="sc">&gt;=</span> eval_year <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">run_time =</span> <span class="fu">case_when</span>(</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">is.na</span>(eval_year) <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.numeric</span>(school_year <span class="sc">-</span> eval_year)</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">evalXyear =</span> eval <span class="sc">*</span> run_time</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 516 Columns: 19
 ── Column specification ────────────────────────────────────────────────────────
@@ -514,37 +552,18 @@ dbl (18): school_year, state_id, eval_year, class_remove_year, suspension_ye...
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df_model <span class="ot">&lt;-</span> df_model <span class="sc">%&gt;%</span> </span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct_enroll_other =</span> enroll_OTHER<span class="sc">/</span>enroll,</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">pct_enroll_AM =</span> enroll_AM<span class="sc">/</span>enroll,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">pct_enroll_ASIAN =</span> enroll_ASIAN<span class="sc">/</span>enroll,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">pct_enroll_HISP =</span> enroll_HISP<span class="sc">/</span>enroll,</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">pct_enroll_BLACK =</span> enroll_BLACK<span class="sc">/</span>enroll,</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">pct_enroll_WHITE =</span> enroll_WHITE<span class="sc">/</span>enroll</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>         )</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>df_model <span class="ot">&lt;-</span> df_model <span class="sc">%&gt;%</span> </span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(ODR_class)) <span class="sc">%&gt;%</span> </span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">eval =</span> <span class="fu">case_when</span>(<span class="sc">!</span><span class="fu">is.na</span>(eval_year) <span class="sc">&amp;</span> school_year <span class="sc">&gt;=</span> eval_year <span class="sc">~</span> <span class="dv">1</span>, <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">class_remove =</span> <span class="fu">case_when</span>(<span class="sc">!</span><span class="fu">is.na</span>(class_remove_year) <span class="sc">&amp;</span> school_year <span class="sc">&gt;=</span> class_remove_year <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>                             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">suspension =</span> <span class="fu">case_when</span>(<span class="sc">!</span><span class="fu">is.na</span>(suspension_year) <span class="sc">&amp;</span> school_year <span class="sc">&gt;=</span> suspension_year <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>                           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span>),</span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">run_time =</span> <span class="fu">case_when</span>(<span class="fu">is.na</span>(eval_year) <span class="sc">~</span> <span class="dv">0</span>, </span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>                         <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.numeric</span>(school_year <span class="sc">-</span> eval_year)),</span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">evalXyear =</span> eval<span class="sc">*</span>run_time</span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>ols_odr1 <span class="ot">&lt;-</span> <span class="fu">feols</span>(<span class="fu">c</span>(ODR_class, ODR_other, ODR_subjective, ODR_objective) <span class="sc">~</span> eval <span class="sc">+</span> </span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>                    pct_enroll_HISP <span class="sc">+</span> pct_enroll_AM <span class="sc">+</span> pct_enroll_ASIAN <span class="sc">+</span></span>
-<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>                    pct_enroll_BLACK <span class="sc">+</span> pct_enroll_other <span class="sc">|</span></span>
-<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>                    state_id <span class="sc">+</span> school_year,</span>
-<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> df_model,</span>
-<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>                    <span class="at">weights =</span> <span class="sc">~</span>enroll,</span>
-<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>                    <span class="at">cluster =</span> <span class="sc">~</span>state_id)</span>
-<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_odr1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ols_odr1 <span class="ot">&lt;-</span> <span class="fu">feols</span>(</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(ODR_class, ODR_other, ODR_subjective, ODR_objective) <span class="sc">~</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    eval <span class="sc">+</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    pct_enroll_HISP <span class="sc">+</span> pct_enroll_AM <span class="sc">+</span> pct_enroll_ASIAN <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    pct_enroll_BLACK <span class="sc">+</span> pct_enroll_other <span class="sc">|</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    state_id <span class="sc">+</span> school_year,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data     =</span> df_model,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights  =</span> <span class="sc">~</span>enroll,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">cluster  =</span> <span class="sc">~</span>state_id</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_odr1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                              x.1              x.2              x.3
 Dependent Var.:         ODR_class        ODR_other   ODR_subjective
@@ -585,19 +604,20 @@ Within R2                 0.01901
 Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>C1.2 Relaxed/Linear Effects<br>
+<p>Table C1a shows that higher‑stakes teacher evaluation reform had no statistically significant effect on Office Disciplinary Referrals. In Model 1, estimated effects were small and statistically insignificant across all four outcomes (e.g., classroom ODRs: β = −0.079, SE = 0.079). Results from Model 2 are similar, although other‑location referrals exhibit a marginal upward trend over time (β = 0.047, SE = 0.024, p &lt; 0.10). Overall, the findings are broadly consistent with those reported in Liebowitz, Porter, and Bragg (2022). Minor differences in point estimates likely reflect confidentiality‑related alterations to the dataset. If larger discrepancies were observed, we would consider examining differences in sample composition or alternative model specifications and covariates.</p>
+<p>C1.b Relaxed/Linear Effects<br>
 </p>
 <p><strong>Summary of model_2</strong><br>
 </p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>linear_odr2 <span class="ot">&lt;-</span> <span class="fu">feols</span>(<span class="fu">c</span>(ODR_class, ODR_other, ODR_subjective, ODR_objective) <span class="sc">~</span> eval <span class="sc">+</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                       evalXyear <span class="sc">+</span> pct_enroll_HISP <span class="sc">+</span> pct_enroll_AM <span class="sc">+</span> pct_enroll_ASIAN <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                       pct_enroll_BLACK <span class="sc">+</span> pct_enroll_other <span class="sc">|</span> state_id <span class="sc">+</span> school_year,</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> df_model,</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">weights =</span> <span class="sc">~</span>enroll,</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">cluster =</span> <span class="sc">~</span>state_id</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear_odr2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>linear_odr2 <span class="ot">&lt;-</span> <span class="fu">feols</span>(<span class="fu">c</span>(ODR_class, ODR_other, ODR_subjective, ODR_objective) <span class="sc">~</span> eval <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                       evalXyear <span class="sc">+</span> pct_enroll_HISP <span class="sc">+</span> pct_enroll_AM <span class="sc">+</span> pct_enroll_ASIAN <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                       pct_enroll_BLACK <span class="sc">+</span> pct_enroll_other <span class="sc">|</span> state_id <span class="sc">+</span> school_year,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> df_model,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">weights =</span> <span class="sc">~</span>enroll,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">cluster =</span> <span class="sc">~</span>state_id</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear_odr2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                              x.1              x.2              x.3
 Dependent Var.:         ODR_class        ODR_other   ODR_subjective
@@ -640,6 +660,105 @@ Within R2                  0.03880
 Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
+<p>C2. Robustness check</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add concurrent discipline policy indicators</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>df_model <span class="ot">&lt;-</span> df_model <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">class_remove =</span> <span class="fu">case_when</span>(</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(class_remove_year) <span class="sc">&amp;</span> school_year <span class="sc">&gt;=</span> class_remove_year <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">suspension =</span> <span class="fu">case_when</span>(</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>      <span class="sc">!</span><span class="fu">is.na</span>(suspension_year) <span class="sc">&amp;</span> school_year <span class="sc">&gt;=</span> suspension_year <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="dv">0</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-estimate DiD model controlling for concurrent discipline reforms</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>ols_odr_c2_policy <span class="ot">&lt;-</span> <span class="fu">feols</span>(</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(ODR_class, ODR_other, ODR_subjective, ODR_objective) <span class="sc">~</span> </span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>    eval <span class="sc">+</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>    class_remove <span class="sc">+</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    suspension <span class="sc">+</span></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>    pct_enroll_HISP <span class="sc">+</span> pct_enroll_AM <span class="sc">+</span> pct_enroll_ASIAN <span class="sc">+</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>    pct_enroll_BLACK <span class="sc">+</span> pct_enroll_other <span class="sc">|</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    state_id <span class="sc">+</span> school_year,</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">data     =</span> df_model,</span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">weights  =</span> <span class="sc">~</span>enroll,</span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">cluster  =</span> <span class="sc">~</span>state_id</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_odr_c2_policy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                              x.1              x.2              x.3
+Dependent Var.:         ODR_class        ODR_other   ODR_subjective
+                                                                   
+eval             -0.0957 (0.0791) -0.0363 (0.0438) -0.0603 (0.0555)
+class_remove      0.0813 (0.1319) 0.1030* (0.0449)  0.0636 (0.0853)
+suspension        0.0591 (0.0661)  0.0882 (0.0600)  0.0057 (0.0485)
+pct_enroll_HISP  -0.6828 (0.6884) -0.2834 (0.4331) -0.1739 (0.5265)
+pct_enroll_AM       1.312 (2.625)   0.0476 (1.140)   2.516. (1.375)
+pct_enroll_ASIAN  -5.613* (2.444)  -0.6309 (2.195)  -3.969* (1.779)
+pct_enroll_BLACK   2.724* (1.039)  1.328* (0.5113) 2.047** (0.7584)
+pct_enroll_other  -0.5061 (2.294)   -1.313 (2.148)   -1.744 (1.947)
+Fixed-Effects:   ---------------- ---------------- ----------------
+state_id                      Yes              Yes              Yes
+school_year                   Yes              Yes              Yes
+________________ ________________ ________________ ________________
+S.E.: Clustered      by: state_id     by: state_id     by: state_id
+Observations                  470              470              470
+R2                        0.83649          0.91354          0.82957
+Within R2                 0.06895          0.06217          0.07906
+
+                                x.4
+Dependent Var.:       ODR_objective
+                                   
+eval               -0.0135 (0.0156)
+class_remove     0.0688*** (0.0152)
+suspension          0.0177 (0.0223)
+pct_enroll_HISP    -0.0686 (0.1602)
+pct_enroll_AM      -0.1901 (0.6521)
+pct_enroll_ASIAN   -0.2239 (0.7618)
+pct_enroll_BLACK  0.4348** (0.1490)
+pct_enroll_other    0.0305 (0.6385)
+Fixed-Effects:   ------------------
+state_id                        Yes
+school_year                     Yes
+________________ __________________
+S.E.: Clustered        by: state_id
+Observations                    470
+R2                          0.90716
+Within R2                   0.06080
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>C 3. Overall, the results show little evidence that higher‑stakes teacher evaluation reforms changed Office Disciplinary Referral (ODR) rates. Across all models, the estimated effects were small and not statistically significant for classroom, other‑location, subjective, and objective referrals. When we allowed the effects to change over time, the results remained largely the same, with only minor and inconsistent changes in other‑location referrals. Taken together, the findings suggest that the introduction of higher‑stakes teacher evaluation did not meaningfully affect disciplinary referral patterns in this dataset.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Event study model</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>event_study <span class="ot">&lt;-</span> <span class="fu">feols</span>(ODR_class <span class="sc">~</span> <span class="fu">i</span>(run_time, <span class="at">ref =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                       pct_enroll_HISP <span class="sc">+</span> pct_enroll_AM <span class="sc">+</span> pct_enroll_ASIAN <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                       pct_enroll_BLACK <span class="sc">+</span> pct_enroll_other <span class="sc">|</span> </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>                       state_id <span class="sc">+</span> school_year,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> df_model,</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">weights =</span> <span class="sc">~</span>enroll,</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">cluster =</span> <span class="sc">~</span>state_id)</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="fu">iplot</span>(event_study, </span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">"Event Study: Effect of Eval Reform on Classroom ODRs"</span>,</span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">xlab =</span> <span class="st">"Years to Eval Reform"</span>,</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="st">"Estimated Effect"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="edld_650_dare_01_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Our results are broadly consistent with Liebowitz, Porter &amp; Bragg (2022). Minor differences likely reflect confidentiality alterations to this dataset. If larger differences existed, we would check sample composition, try different time windows around reform, or drop individual states to identify outliers.</p>
 </section>
 </section>
 </section>

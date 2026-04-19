@@ -109,14 +109,14 @@ df_long <- df %>%
     values_to = "value"
   )
 
-# Standardized the scale of x-axis
-max_val <- max(df[c("ODR_class", "ODR_other", "ODR_subjective", "ODR_objective")], na.rm = TRUE)
-
-# Plot all four distributions side by side
-
+# Plot distributions of the four ODR outcomes
 ggplot(df_long, aes(x = value)) +
-  geom_histogram(bins = 40, fill = "steelblue", color = "white", na.rm = TRUE) +
-  xlim(0, max_val) +
+  geom_histogram(
+    bins = 40,
+    fill = "steelblue",
+    color = "white",
+    na.rm = TRUE
+  ) +
   facet_wrap(~ outcome, scales = "free", ncol = 2) +
   labs(
     title = "Distribution of ODR outcome variables",
@@ -128,23 +128,27 @@ ggplot(df_long, aes(x = value)) +
     strip.text = element_text(face = "bold"),
     plot.title = element_text(size = 14)
   )
-
 ```
 
 B3. **Answer**
 
 Our analytic sample would consists of all state‑year observations in the dataset with non‑missing enrollment and FRPL data, and the inferences apply to the population of public‑school students in the states and years represented in that sample.
 
-```{r warning=FALSE}
-
+```{r}
+# Load required packages
 library(tidyverse)
 library(here)
 library(flextable)
 library(officer)
 
-# ---- 1. Analytic sample -----------------------------------------------------
+# 1. Analytic sample 
 df <- read_csv(here("data/EDLD_650_DARE_1.csv")) |>
-  filter(!is.na(enroll), !is.na(FRPL_percent)) |>
+  filter(
+    !is.na(ODR_class),
+    !is.na(ODR_other),
+    !is.na(ODR_subjective),
+    !is.na(ODR_objective)
+  ) |>
   mutate(
     pct_AM    = enroll_AM    / enroll,
     pct_ASIAN = enroll_ASIAN / enroll,
@@ -153,7 +157,7 @@ df <- read_csv(here("data/EDLD_650_DARE_1.csv")) |>
     pct_WHITE = enroll_WHITE / enroll
   )
 
-# ---- 2. Enrollment-weighted yearly averages ---------------------------------
+#  2. Enrollment-weighted yearly averages 
 wt_vars <- c(
   "FRPL_percent",
   "pct_AM", "pct_ASIAN", "pct_BLACK", "pct_HISP", "pct_WHITE",
@@ -172,23 +176,23 @@ year_avgs <- df |>
     .groups = "drop"
   )
 
-# ---- 3. Mean & SD across yearly weighted averages ---------------------------
+# 3. Mean & SD across yearly weighted averages 
 stats <- year_avgs |>
   summarise(
     across(all_of(wt_vars), list(mean = mean, sd = sd), na.rm = TRUE)
   )
 
-# ---- 4. Formatting helper ---------------------------------------------------
+# 4. Formatting helper 
 fmt <- function(x, digits) {
   formatC(round(x, digits), format = "f", digits = digits, big.mark = ",")
 }
 
-# ---- 5. Assemble table ------------------------------------------------------
+# 5. Assemble table 
 tbl <- tibble(
   Characteristic = c(
     "Enrollment",
+    "  Mean state-level enrollment",
     "  Mean state-year enrollment",
-    "  Mean year enrollment",
     "School characteristics",
     "  % Low-income (FRPL)",
     "  % Am. Indian/Alask. Native",
@@ -200,64 +204,65 @@ tbl <- tibble(
     "Grade-level ODR outcomes (per 500 students, per day)",
     "  Classroom ODR rate",
     "  Other location ODR rate",
-    "  Subjective-Classroom ODR rate",
-    "  Objective-Classroom ODR rate"
+    "  Subjective-classroom ODR rate",
+    "  Objective-classroom ODR rate"
   ),
   Mean = c(
     NA,
-    fmt(mean(df$enroll),                0), fmt(mean(year_avgs$enroll_total), 0),
+    fmt(mean(df$enroll),              0),
+    fmt(mean(year_avgs$enroll_total), 0),
     NA,
-    fmt(stats$FRPL_percent_mean,        2), fmt(stats$pct_AM_mean,            2),
-    fmt(stats$pct_ASIAN_mean,           2), fmt(stats$pct_BLACK_mean,         2),
-    fmt(stats$pct_HISP_mean,            2), fmt(stats$pct_WHITE_mean,         2),
-    fmt(stats$PBIS_mean,                2),
+    fmt(stats$FRPL_percent_mean,      2),
+    fmt(stats$pct_AM_mean,            2),
+    fmt(stats$pct_ASIAN_mean,         2),
+    fmt(stats$pct_BLACK_mean,         2),
+    fmt(stats$pct_HISP_mean,          2),
+    fmt(stats$pct_WHITE_mean,         2),
+    fmt(stats$PBIS_mean,              2),
     NA,
-    fmt(stats$ODR_class_mean,           2), fmt(stats$ODR_other_mean,         2),
-    fmt(stats$ODR_subjective_mean,      2), fmt(stats$ODR_objective_mean,     2)
+    fmt(stats$ODR_class_mean,         2),
+    fmt(stats$ODR_other_mean,         2),
+    fmt(stats$ODR_subjective_mean,    2),
+    fmt(stats$ODR_objective_mean,     2)
   ),
   SD = c(
     NA,
-    fmt(sd(df$enroll),                  0), fmt(sd(year_avgs$enroll_total),   0),
+    fmt(sd(df$enroll),                0),
+    fmt(sd(year_avgs$enroll_total),   0),
     NA,
-    fmt(stats$FRPL_percent_sd,          2), fmt(stats$pct_AM_sd,              2),
-    fmt(stats$pct_ASIAN_sd,             2), fmt(stats$pct_BLACK_sd,           2),
-    fmt(stats$pct_HISP_sd,              2), fmt(stats$pct_WHITE_sd,           2),
-    fmt(stats$PBIS_sd,                  2),
+    fmt(stats$FRPL_percent_sd,        2),
+    fmt(stats$pct_AM_sd,              2),
+    fmt(stats$pct_ASIAN_sd,           2),
+    fmt(stats$pct_BLACK_sd,           2),
+    fmt(stats$pct_HISP_sd,            2),
+    fmt(stats$pct_WHITE_sd,           2),
+    fmt(stats$PBIS_sd,                2),
     NA,
-    fmt(stats$ODR_class_sd,             2), fmt(stats$ODR_other_sd,           2),
-    fmt(stats$ODR_subjective_sd,        2), fmt(stats$ODR_objective_sd,       2)
+    fmt(stats$ODR_class_sd,           2),
+    fmt(stats$ODR_other_sd,           2),
+    fmt(stats$ODR_subjective_sd,      2),
+    fmt(stats$ODR_objective_sd,       2)
   )
 )
 
+#  6. Build flextable 
 header_rows <- which(is.na(tbl$Mean))
 
-# ---- 6. Build flextable -----------------------------------------------------
 caption <- paste0(
-  "Full Sample  (N = ", nrow(df), " state-year observations; ",
+  "Full Sample (N = ", nrow(df), " state-year observations; ",
   n_distinct(df$state_abbrev), " states; ",
   min(df$school_year), "–", max(df$school_year), ")"
 )
 
 ft <- flextable(tbl) |>
-  set_header_labels(Characteristic = "Characteristic", Mean = "Mean", SD = "SD") |>
   add_header_row(values = c(caption, "", ""), colwidths = c(1, 1, 1)) |>
   bold(i = header_rows, part = "body") |>
   bg(i = header_rows, bg = "#F2F2F2", part = "body") |>
-  hline(
-    i      = header_rows[header_rows > 1] - 1,
-    border = fp_border_default(width = 0.5),
-    part   = "body"
-  ) |>
   align(j = 2:3, align = "center", part = "all") |>
-  align(j = 1,   align = "left",   part = "all") |>
-  width(j = 1,   width = 3.4) |>
-  width(j = 2:3, width = 0.9) |>
-  font(fontname = "Times New Roman", part = "all") |>
-  fontsize(size = 11, part = "all") |>
-  bold(part = "header") |>
+  align(j = 1, align = "left", part = "all") |>
   theme_booktabs()
 
-# ---- 7. Save and display ----------------------------------------------------
+#  7. Save and display 
 save_as_docx(ft, path = "dare1_table1.docx")
 ft
 ```
@@ -266,116 +271,114 @@ B4. **Answer**
 
 We notice that there is a downward secular trend in Average Office Disciplinary Referral rates prior to the policy implementation. This suggests that the ODRs rates were already declining. We would like to conduct event study based on this evidence, which will help us to check the parallel trends assumption. When using event study, it will help to convert binary variable into dummy variables. we stress plotting these raw averages only for states that implemented evaluation reform because we need to look at the patterns of ODR trends when the policy enacts. We need to identify whether there is a sudden jump displays in the trends.
 
-```{r warning=FALSE}
+```{r}
 odr_rates <- df %>% 
   mutate(
-    eval = case_when(!is.na(eval_year) & school_year >= eval_year ~ 1, TRUE ~ 0),
-    class_remove = case_when(!is.na(class_remove_year) & school_year >= class_remove_year ~ 1,
-                             TRUE ~ 0),
-    suspension = case_when(!is.na(suspension_year) & school_year >= suspension_year ~ 1, 
-                           TRUE ~ 0),
-    run_time = as.numeric(school_year - eval_year),
-    evalXyear = eval*run_time
-  )
-
-
-odr_rates <- odr_rates %>% 
+    run_time = as.numeric(school_year - eval_year)
+  ) %>% 
   filter(!is.na(eval_year)) %>% 
   filter(run_time >= -5 & run_time <= 2) %>% 
   group_by(run_time) %>% 
   summarise(
-    class = mean(ODR_class, na.rm = TRUE),
-    other = mean(ODR_other, na.rm = TRUE),
-    
+    class      = mean(ODR_class, na.rm = TRUE),
+    other      = mean(ODR_other, na.rm = TRUE),
     subjective = mean(ODR_subjective, na.rm = TRUE),
-    objective = mean(ODR_objective, na.rm = TRUE),
+    objective  = mean(ODR_objective, na.rm = TRUE),
     .groups = "drop"
   ) %>% 
   pivot_longer(cols = -run_time, names_to = "measure", values_to = "rate") %>% 
   mutate(
     panel = case_when(
-      measure %in% c("class","other") ~ "Panel A. Location of ODR",
+      measure %in% c("class", "other") ~ "Panel A. Location of ODR",
       measure %in% c("subjective", "objective") ~ "Panel B. Objectivity of ODR"
     ), 
     measure = case_when(
-      measure == "class" ~ "Class Origin",
-      measure == "other" ~ "Other Origin",
+      measure == "class"      ~ "Class Origin",
+      measure == "other"      ~ "Other Origin",
       measure == "subjective" ~ "Class Origin, Subjective",
-      measure == "objective" ~ "Class Origin, Objective"
+      measure == "objective"  ~ "Class Origin, Objective"
     )
   )
-  
-# Panel Plot #
-plot_1 <- odr_rates %>% 
-  ggplot(aes(x = run_time, y = rate, colour = measure, shape = measure)) +
+
+plot_1 <- ggplot(odr_rates, aes(x = run_time, y = rate, colour = measure, shape = measure)) +
   geom_point(size = 2.5) +
-  geom_smooth(data = filter(odr_rates, run_time < 0),
-              method = "lm", se = FALSE, size = 0.8) +
-  geom_smooth(data = filter(odr_rates, run_time >= 0),
-              method = "lm", se = FALSE, size = 0.8) +
-  geom_vline(xintercept = -0.5, linetype = "dashed", color = "grey35") +
-  facet_wrap(~panel, ncol = 1, scales = "free_y") +
-  scale_x_continuous(breaks = -5:2) +
-  theme_bw()+
-  theme(
-    legend.position = "bottom"
+  geom_smooth(
+    data = filter(odr_rates, run_time < 0),
+    method = "lm", se = FALSE, size = 0.8
   ) +
+  geom_smooth(
+    data = filter(odr_rates, run_time >= 0),
+    method = "lm", se = FALSE, size = 0.8
+  ) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey35") +
+  facet_wrap(~ panel, ncol = 1, scales = "free_y") +
+  scale_x_continuous(breaks = -5:2) +
+  theme_bw() +
+  theme(legend.position = "bottom") +
   labs(
-    x = "Time to Eval Policy",
-    y = "ODR per 500 stu",
-    color = NULL, shape = NULL
+    x = "Time Relative to Evaluation Policy",
+    y = "ODR per 500 students",
+    color = NULL,
+    shape = NULL
   )
-  
-  
+
 plot_1
 ```
 
 #### C. Replication and Extension
 
-C1.1 Weighted Two-Way Fixed Effects Model\
-**Summary of model_1**\
-
+C1.a Weighted Two-Way Fixed Effects Model\
+**Summary of model_1**
 
 ```{r}
-df_model <- read_csv(here("data/EDLD_650_DARE_1.csv")) 
 
-df_model <- df_model %>% 
-  mutate(pct_enroll_other = enroll_OTHER/enroll,
-         pct_enroll_AM = enroll_AM/enroll,
-         pct_enroll_ASIAN = enroll_ASIAN/enroll,
-         pct_enroll_HISP = enroll_HISP/enroll,
-         pct_enroll_BLACK = enroll_BLACK/enroll,
-         pct_enroll_WHITE = enroll_WHITE/enroll
-         )
-
-
-df_model <- df_model %>% 
-  filter(!is.na(ODR_class)) %>% 
+df_model <- read_csv(here("data/EDLD_650_DARE_1.csv")) %>%
   mutate(
-    eval = case_when(!is.na(eval_year) & school_year >= eval_year ~ 1, TRUE ~ 0),
-    class_remove = case_when(!is.na(class_remove_year) & school_year >= class_remove_year ~ 1,
-                             TRUE ~ 0),
-    suspension = case_when(!is.na(suspension_year) & school_year >= suspension_year ~ 1, 
-                           TRUE ~ 0),
-    run_time = case_when(is.na(eval_year) ~ 0, 
-                         TRUE ~ as.numeric(school_year - eval_year)),
-    evalXyear = eval*run_time
+    pct_enroll_other = enroll_OTHER / enroll,
+    pct_enroll_AM    = enroll_AM    / enroll,
+    pct_enroll_ASIAN = enroll_ASIAN / enroll,
+    pct_enroll_HISP  = enroll_HISP  / enroll,
+    pct_enroll_BLACK = enroll_BLACK / enroll,
+    pct_enroll_WHITE = enroll_WHITE / enroll
+  ) %>% 
+  # Restrict to state-years with non-missing outcomes
+  filter(
+    !is.na(ODR_class),
+    !is.na(ODR_other),
+    !is.na(ODR_subjective),
+    !is.na(ODR_objective)
+  ) %>% 
+  mutate(
+    eval = case_when(
+      !is.na(eval_year) & school_year >= eval_year ~ 1,
+      TRUE ~ 0
+    ),
+    run_time = case_when(
+      is.na(eval_year) ~ 0,
+      TRUE ~ as.numeric(school_year - eval_year)
+    ),
+    evalXyear = eval * run_time
   )
 
-ols_odr1 <- feols(c(ODR_class, ODR_other, ODR_subjective, ODR_objective) ~ eval + 
-                    pct_enroll_HISP + pct_enroll_AM + pct_enroll_ASIAN +
-                    pct_enroll_BLACK + pct_enroll_other |
-                    state_id + school_year,
-                    data = df_model,
-                    weights = ~enroll,
-                    cluster = ~state_id)
+ols_odr1 <- feols(
+  c(ODR_class, ODR_other, ODR_subjective, ODR_objective) ~ 
+    eval + 
+    pct_enroll_HISP + pct_enroll_AM + pct_enroll_ASIAN +
+    pct_enroll_BLACK + pct_enroll_other |
+    state_id + school_year,
+  data     = df_model,
+  weights  = ~enroll,
+  cluster  = ~state_id
+)
+
 summary(ols_odr1)
 ```
 
-C1.2 Relaxed/Linear Effects\
+Table C1a shows that higher‑stakes teacher evaluation reform had no statistically significant effect on Office Disciplinary Referrals. In Model 1, estimated effects were small and statistically insignificant across all four outcomes (e.g., classroom ODRs: β = −0.079, SE = 0.079). Results from Model 2 are similar, although other‑location referrals exhibit a marginal upward trend over time (β = 0.047, SE = 0.024, p \< 0.10). Overall, the findings are broadly consistent with those reported in Liebowitz, Porter, and Bragg (2022). Minor differences in point estimates likely reflect confidentiality‑related alterations to the dataset. If larger discrepancies were observed, we would consider examining differences in sample composition or alternative model specifications and covariates.
+
+C1.b Relaxed/Linear Effects\
 
 **Summary of model_2**\
-
 
 ```{r}
 linear_odr2 <- feols(c(ODR_class, ODR_other, ODR_subjective, ODR_objective) ~ eval +
@@ -388,4 +391,56 @@ linear_odr2 <- feols(c(ODR_class, ODR_other, ODR_subjective, ODR_objective) ~ ev
 summary(linear_odr2)
 ```
 
+C2. Robustness check
 
+```{r}
+# Add concurrent discipline policy indicators
+df_model <- df_model %>% 
+  mutate(
+    class_remove = case_when(
+      !is.na(class_remove_year) & school_year >= class_remove_year ~ 1,
+      TRUE ~ 0
+    ),
+    suspension = case_when(
+      !is.na(suspension_year) & school_year >= suspension_year ~ 1,
+      TRUE ~ 0
+    )
+  )
+
+# Re-estimate DiD model controlling for concurrent discipline reforms
+ols_odr_c2_policy <- feols(
+  c(ODR_class, ODR_other, ODR_subjective, ODR_objective) ~ 
+    eval +
+    class_remove +
+    suspension +
+    pct_enroll_HISP + pct_enroll_AM + pct_enroll_ASIAN +
+    pct_enroll_BLACK + pct_enroll_other |
+    state_id + school_year,
+  data     = df_model,
+  weights  = ~enroll,
+  cluster  = ~state_id
+)
+
+summary(ols_odr_c2_policy)
+```
+
+C 3. Overall, the results show little evidence that higher‑stakes teacher evaluation reforms changed Office Disciplinary Referral (ODR) rates. Across all models, the estimated effects were small and not statistically significant for classroom, other‑location, subjective, and objective referrals. When we allowed the effects to change over time, the results remained largely the same, with only minor and inconsistent changes in other‑location referrals. Taken together, the findings suggest that the introduction of higher‑stakes teacher evaluation did not meaningfully affect disciplinary referral patterns in this dataset.
+
+```{r}
+# Event study model
+event_study <- feols(ODR_class ~ i(run_time, ref = -1) + 
+                       pct_enroll_HISP + pct_enroll_AM + pct_enroll_ASIAN +
+                       pct_enroll_BLACK + pct_enroll_other | 
+                       state_id + school_year,
+                     data = df_model,
+                     weights = ~enroll,
+                     cluster = ~state_id)
+
+# Plot
+iplot(event_study, 
+      main = "Event Study: Effect of Eval Reform on Classroom ODRs",
+      xlab = "Years to Eval Reform",
+      ylab = "Estimated Effect")
+```
+
+Our results are broadly consistent with Liebowitz, Porter & Bragg (2022). Minor differences likely reflect confidentiality alterations to this dataset. If larger differences existed, we would check sample composition, try different time windows around reform, or drop individual states to identify outliers.
