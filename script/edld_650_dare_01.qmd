@@ -446,5 +446,5 @@ iplot(event_study,
 Our results are broadly consistent with Liebowitz, Porter & Bragg (2022). Minor differences likely reflect confidentiality alterations to this dataset. If larger differences existed, we would check sample composition, try different time windows around reform, or drop individual states to identify outliers.
 
 #### Acknowledgement
-In the process of completing this assignment, we used ChatGPT/Claude to clean or debug our code and refine our answers.
 
+In the process of completing this assignment, we used ChatGPT/Claude to clean or debug our code and refine our answers.
