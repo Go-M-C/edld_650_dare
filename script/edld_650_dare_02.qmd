@@ -45,7 +45,7 @@ ggplot(data_2005, aes(x = norm, y = receive_williams)) +
               method = "lm", se = TRUE, color = "firebrick") +
   geom_vline(xintercept = 0, linetype = "dashed", color = "black", linewidth = 1) +
   labs(
-    title = "Effect of API Threshold on Instructional Material Funding (2005)",
+    title = "Figure 1: Effect of API Threshold on Instructional Material Funding (2005)",
     x = "Normalized API Score (0 = Cutoff of 643)",
     y = "Received Instructional Material Funding",
     caption = "Dashed line indicates the cutoff (API = 643, normalized to 0)"
@@ -224,3 +224,15 @@ modelsummary(models_avg,
              title = "Table 2. Regression Discontinuity Estimates of Effect of Textbook on Student Achievement in Elementary Schools",
              notes = "Notes: Each entry is an estimated effect from a linear regression with flexible slopes, rectangular kernel weights and a bandwidth of 19.099. Robust standard errors are displayed in parentheses. Estimates in all post years poll all observations from 2005 to 2009 for a total of 2,680 observations. Columns 2-9 show estimated effects for individual years, with 536 observations each.")
 ```
+
+B3. Write a discussion paragraph in which you present the substantive
+conclusions (and limitations) of your results about the eﬀects of added
+textbook funding for California elementary school students.\
+**Answer**
+
+The results showing in our estimate of effects of additional textbook funding on school's average test score can help us to understand the effects of added textbook funding for California elementary school students. The significant 0.20 increase in average test scores for 2005 suggests that targeted resources can provide immediate influence to student achievement in elementary schools. However, this magnitude represents only the effect in the first year when eligible schools received the funds, and the observed effect decay in the following years from 2006 to 2009 suggests that one-time intervention may not be sufficient to sustain long-term academic achievement.  
+
+Our identification strategy relies on the assumption that schools that differ in API by only a few points are equal in expectation prior to the exogenous assignment to eligibility of Williams settlement. Our modeling approach depends on our ability to project a smooth relationship between average scores and API across the discontinuity and then estimate the discontinuous effect of being eligible to receive the Williams settlement funds. 
+
+**Acknowledgement**
+In the process of completing this assignment, we utilized Claude/ChatGpt to clean or debug our code and refine our answers.
