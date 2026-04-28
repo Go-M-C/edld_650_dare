@@ -47,3 +47,8 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+.positai
+.DS_Store
+.Rproj.user
+.Rhistory
+.RData
