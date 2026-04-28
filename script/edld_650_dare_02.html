@@ -347,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>B2. In a regression framework, formally test whether the receipt of additional funds for instructional materials improved test score outcomes for elementary students in California./</p>
-<p><strong>Answer</strong></p>
+<p><strong>Answer</strong> In Table 2, we present estimates for the observed discontinuity seen in panel B of Figure 3 by year. Each entry represents a separate regression, where the row identifies the dependent variable measuring student achievement and the column represents the year. We utilize the same bandwidth as Holden(2016), so each entry is an estimated effect from a linear regression with flexible slopes, rectangular kernel weights and a bandwidth of 19.099. Similar to panel A of Figure 3, column 2 to 3 present the estimated discontinuities in test scores as falsification test, while columns 1 and 4 to 8 present estimated program effects. The estimates in column 4 indicate an effect on student achievement of 0.20 standard deviations in the first year that is statistically significant at the 1 percent level of average scores(p&lt;0.05). Same as the results being displayed in Holden’s analysis (2016), the estimated effect declines to 0.16 and 0.18 standard deviations in 2006 and 2007 and is not significant in later years.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -379,15 +379,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2005"</span>     <span class="ot">=</span> fit_2005,</span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2006"</span>     <span class="ot">=</span> fit_2006,</span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2007"</span>     <span class="ot">=</span> fit_2007,</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2008"</span>     <span class="ot">=</span> fit_2008</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(models_avg,</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>             <span class="at">vcov =</span> <span class="st">"HC1"</span>,</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>             <span class="at">coef_map =</span> <span class="fu">c</span>(<span class="st">"ind"</span> <span class="ot">=</span> <span class="st">"Treatment"</span>),</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">"AIC|BIC|Log.Lik|RMSE"</span>,</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>             <span class="at">title =</span> <span class="st">"Table 2. Regression Discontinuity Estimates of Effect of Textbook on Student Achievement in Elementary Schools"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2008"</span>     <span class="ot">=</span> fit_2008,</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2009"</span>     <span class="ot">=</span> fit_2009</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(models_avg,</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>             <span class="at">vcov =</span> <span class="st">"HC1"</span>,</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>             <span class="at">stars =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>             <span class="at">coef_map =</span> <span class="fu">c</span>(<span class="st">"ind"</span> <span class="ot">=</span> <span class="st">"Treatment Effect"</span>),</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>             <span class="at">gof_omit =</span> <span class="st">"AIC|BIC|Log.Lik|RMSE"</span>,</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>             <span class="at">title =</span> <span class="st">"Table 2. Regression Discontinuity Estimates of Effect of Textbook on Student Achievement in Elementary Schools"</span>,</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>             <span class="at">notes =</span> <span class="st">"Notes: Each entry is an estimated effect from a linear regression with flexible slopes, rectangular kernel weights and a bandwidth of 19.099. Robust standard errors are displayed in parentheses. Estimates in all post years poll all observations from 2005 to 2009 for a total of 2,680 observations. Columns 2-9 show estimated effects for individual years, with 536 observations each."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <!-- preamble start -->
@@ -396,25 +398,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
     <script>
       // Create table-specific functions using external factory
-      const tableFns_6z269x2f5vzqw0m83s0c = TinyTable.createTableFunctions("tinytable_6z269x2f5vzqw0m83s0c");
+      const tableFns_3hl24xsdsfxp9b5wq4nu = TinyTable.createTableFunctions("tinytable_3hl24xsdsfxp9b5wq4nu");
       // tinytable span after
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: '6', j: 2 }, { i: '6', j: 3 }, { i: '6', j: 4 }, { i: '6', j: 5 }, { i: '6', j: 6 }, { i: '6', j: 7 }, { i: '6', j: 8 } ], css_id: 'tinytable_css_iavyxg8wgiqpmb4h6gbs',}, 
-          { positions: [ { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 }, { i: '2', j: 5 }, { i: '2', j: 6 }, { i: '2', j: 7 }, { i: '2', j: 8 } ], css_id: 'tinytable_css_fhbpw1qv6i4yruvmu12b',}, 
-          { positions: [ { i: '1', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '5', j: 2 }, { i: '1', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '5', j: 3 }, { i: '1', j: 4 }, { i: '3', j: 4 }, { i: '4', j: 4 }, { i: '5', j: 4 }, { i: '1', j: 5 }, { i: '3', j: 5 }, { i: '4', j: 5 }, { i: '5', j: 5 }, { i: '1', j: 6 }, { i: '3', j: 6 }, { i: '4', j: 6 }, { i: '5', j: 6 }, { i: '1', j: 7 }, { i: '3', j: 7 }, { i: '4', j: 7 }, { i: '5', j: 7 }, { i: '1', j: 8 }, { i: '3', j: 8 }, { i: '4', j: 8 }, { i: '5', j: 8 } ], css_id: 'tinytable_css_0dmctfav3v4nc6sqe77a',}, 
-          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 } ], css_id: 'tinytable_css_3pq46k7b43r76hevzwnm',}, 
-          { positions: [ { i: '6', j: 1 } ], css_id: 'tinytable_css_itrxvale607i2i478767',}, 
-          { positions: [ { i: '2', j: 1 } ], css_id: 'tinytable_css_8pxzm7ykxmgdm9664xqd',}, 
-          { positions: [ { i: '1', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 } ], css_id: 'tinytable_css_74ni39pg0ffsk77iibel',}, 
-          { positions: [ { i: '0', j: 1 } ], css_id: 'tinytable_css_4q1bzjsd6s34wu076nz0',}, 
+          { positions: [ { i: '6', j: 2 }, { i: '6', j: 3 }, { i: '6', j: 4 }, { i: '6', j: 5 }, { i: '6', j: 6 }, { i: '6', j: 7 }, { i: '6', j: 8 }, { i: '6', j: 9 } ], css_id: 'tinytable_css_u2d801bpv1yh3zoxotnl',}, 
+          { positions: [ { i: '2', j: 2 }, { i: '2', j: 3 }, { i: '2', j: 4 }, { i: '2', j: 5 }, { i: '2', j: 6 }, { i: '2', j: 7 }, { i: '2', j: 8 }, { i: '2', j: 9 } ], css_id: 'tinytable_css_yzm17thdo2b3y7ifsnli',}, 
+          { positions: [ { i: '1', j: 2 }, { i: '3', j: 2 }, { i: '4', j: 2 }, { i: '5', j: 2 }, { i: '1', j: 3 }, { i: '3', j: 3 }, { i: '4', j: 3 }, { i: '5', j: 3 }, { i: '1', j: 4 }, { i: '3', j: 4 }, { i: '4', j: 4 }, { i: '5', j: 4 }, { i: '1', j: 5 }, { i: '3', j: 5 }, { i: '4', j: 5 }, { i: '5', j: 5 }, { i: '1', j: 6 }, { i: '3', j: 6 }, { i: '4', j: 6 }, { i: '5', j: 6 }, { i: '1', j: 7 }, { i: '3', j: 7 }, { i: '4', j: 7 }, { i: '5', j: 7 }, { i: '1', j: 8 }, { i: '3', j: 8 }, { i: '4', j: 8 }, { i: '5', j: 8 }, { i: '1', j: 9 }, { i: '3', j: 9 }, { i: '4', j: 9 }, { i: '5', j: 9 } ], css_id: 'tinytable_css_qoz23hxotrl9tih8m3oe',}, 
+          { positions: [ { i: '0', j: 2 }, { i: '0', j: 3 }, { i: '0', j: 4 }, { i: '0', j: 5 }, { i: '0', j: 6 }, { i: '0', j: 7 }, { i: '0', j: 8 }, { i: '0', j: 9 } ], css_id: 'tinytable_css_t7w7t870kxqozb76j7ew',}, 
+          { positions: [ { i: '6', j: 1 } ], css_id: 'tinytable_css_y5yi761h2yrtwg4s84p8',}, 
+          { positions: [ { i: '2', j: 1 } ], css_id: 'tinytable_css_6dcq2pqe8q0aklp87lpr',}, 
+          { positions: [ { i: '1', j: 1 }, { i: '3', j: 1 }, { i: '4', j: 1 }, { i: '5', j: 1 } ], css_id: 'tinytable_css_g98xufhyugzb7akf3nop',}, 
+          { positions: [ { i: '0', j: 1 } ], css_id: 'tinytable_css_dmi7h0zm33ss09rfyb9s',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  tableFns_6z269x2f5vzqw0m83s0c.styleCell(cell.i, cell.j, group.css_id);
+                  tableFns_3hl24xsdsfxp9b5wq4nu.styleCell(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -423,17 +425,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vincentarelbundock/tinytable@main/inst/tinytable.css">
     <style>
     /* tinytable css entries after */
-    #tinytable_6z269x2f5vzqw0m83s0c td.tinytable_css_iavyxg8wgiqpmb4h6gbs, #tinytable_6z269x2f5vzqw0m83s0c th.tinytable_css_iavyxg8wgiqpmb4h6gbs {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_6z269x2f5vzqw0m83s0c td.tinytable_css_fhbpw1qv6i4yruvmu12b, #tinytable_6z269x2f5vzqw0m83s0c th.tinytable_css_fhbpw1qv6i4yruvmu12b {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_6z269x2f5vzqw0m83s0c td.tinytable_css_0dmctfav3v4nc6sqe77a, #tinytable_6z269x2f5vzqw0m83s0c th.tinytable_css_0dmctfav3v4nc6sqe77a { text-align: center }
-    #tinytable_6z269x2f5vzqw0m83s0c td.tinytable_css_3pq46k7b43r76hevzwnm, #tinytable_6z269x2f5vzqw0m83s0c th.tinytable_css_3pq46k7b43r76hevzwnm {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
-    #tinytable_6z269x2f5vzqw0m83s0c td.tinytable_css_itrxvale607i2i478767, #tinytable_6z269x2f5vzqw0m83s0c th.tinytable_css_itrxvale607i2i478767 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
-    #tinytable_6z269x2f5vzqw0m83s0c td.tinytable_css_8pxzm7ykxmgdm9664xqd, #tinytable_6z269x2f5vzqw0m83s0c th.tinytable_css_8pxzm7ykxmgdm9664xqd {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
-    #tinytable_6z269x2f5vzqw0m83s0c td.tinytable_css_74ni39pg0ffsk77iibel, #tinytable_6z269x2f5vzqw0m83s0c th.tinytable_css_74ni39pg0ffsk77iibel { text-align: left }
-    #tinytable_6z269x2f5vzqw0m83s0c td.tinytable_css_4q1bzjsd6s34wu076nz0, #tinytable_6z269x2f5vzqw0m83s0c th.tinytable_css_4q1bzjsd6s34wu076nz0 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_3hl24xsdsfxp9b5wq4nu td.tinytable_css_u2d801bpv1yh3zoxotnl, #tinytable_3hl24xsdsfxp9b5wq4nu th.tinytable_css_u2d801bpv1yh3zoxotnl {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_3hl24xsdsfxp9b5wq4nu td.tinytable_css_yzm17thdo2b3y7ifsnli, #tinytable_3hl24xsdsfxp9b5wq4nu th.tinytable_css_yzm17thdo2b3y7ifsnli {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_3hl24xsdsfxp9b5wq4nu td.tinytable_css_qoz23hxotrl9tih8m3oe, #tinytable_3hl24xsdsfxp9b5wq4nu th.tinytable_css_qoz23hxotrl9tih8m3oe { text-align: center }
+    #tinytable_3hl24xsdsfxp9b5wq4nu td.tinytable_css_t7w7t870kxqozb76j7ew, #tinytable_3hl24xsdsfxp9b5wq4nu th.tinytable_css_t7w7t870kxqozb76j7ew {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: center }
+    #tinytable_3hl24xsdsfxp9b5wq4nu td.tinytable_css_y5yi761h2yrtwg4s84p8, #tinytable_3hl24xsdsfxp9b5wq4nu th.tinytable_css_y5yi761h2yrtwg4s84p8 {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.1em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_3hl24xsdsfxp9b5wq4nu td.tinytable_css_6dcq2pqe8q0aklp87lpr, #tinytable_3hl24xsdsfxp9b5wq4nu th.tinytable_css_6dcq2pqe8q0aklp87lpr {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 0; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
+    #tinytable_3hl24xsdsfxp9b5wq4nu td.tinytable_css_g98xufhyugzb7akf3nop, #tinytable_3hl24xsdsfxp9b5wq4nu th.tinytable_css_g98xufhyugzb7akf3nop { text-align: left }
+    #tinytable_3hl24xsdsfxp9b5wq4nu td.tinytable_css_dmi7h0zm33ss09rfyb9s, #tinytable_3hl24xsdsfxp9b5wq4nu th.tinytable_css_dmi7h0zm33ss09rfyb9s {  position: relative; --border-bottom: 1; --border-left: 0; --border-right: 0; --border-top: 1; --line-color-bottom: black; --line-color-left: black; --line-color-right: black; --line-color-top: black; --line-width-bottom: 0.05em; --line-width-left: 0.1em; --line-width-right: 0.1em; --line-width-top: 0.1em; --trim-bottom-left: 0%; --trim-bottom-right: 0%; --trim-left-bottom: 0%; --trim-left-top: 0%; --trim-right-bottom: 0%; --trim-right-top: 0%; --trim-top-left: 0%; --trim-top-right: 0%; ; text-align: left }
     </style>
     <div class="container">
-      <table class="tinytable" id="tinytable_6z269x2f5vzqw0m83s0c" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="tinytable" id="tinytable_3hl24xsdsfxp9b5wq4nu" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <caption>Table 2. Regression Discontinuity Estimates of Effect of Textbook on Student Achievement in Elementary Schools</caption>
         <thead>
               <tr>
@@ -445,12 +447,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                 <th scope="col" data-row="0" data-col="6">2006</th>
                 <th scope="col" data-row="0" data-col="7">2007</th>
                 <th scope="col" data-row="0" data-col="8">2008</th>
+                <th scope="col" data-row="0" data-col="9">2009</th>
               </tr>
         </thead>
-        <tfoot><tr><td colspan="8">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr></tfoot>
+        <tfoot><tr><td colspan="9">+ p &lt; 0.1, * p &lt; 0.05, ** p &lt; 0.01, *** p &lt; 0.001</td></tr>
+<tr><td colspan="9">Notes: Each entry is an estimated effect from a linear regression with flexible slopes, rectangular kernel weights and a bandwidth of 19.099. Robust standard errors are displayed in parentheses. Estimates in all post years poll all observations from 2005 to 2009 for a total of 2,680 observations. Columns 2-9 show estimated effects for individual years, with 536 observations each.</td></tr></tfoot>
         <tbody>
                 <tr>
-                  <td data-row="1" data-col="1">Treatment</td>
+                  <td data-row="1" data-col="1">Treatment Effect</td>
                   <td data-row="1" data-col="2">0.163***</td>
                   <td data-row="1" data-col="3">-0.011</td>
                   <td data-row="1" data-col="4">0.095+</td>
@@ -458,6 +462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                   <td data-row="1" data-col="6">0.164+</td>
                   <td data-row="1" data-col="7">0.183*</td>
                   <td data-row="1" data-col="8">0.117</td>
+                  <td data-row="1" data-col="9">0.148</td>
                 </tr>
                 <tr>
                   <td data-row="2" data-col="1"></td>
@@ -468,6 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                   <td data-row="2" data-col="6">(0.087)</td>
                   <td data-row="2" data-col="7">(0.093)</td>
                   <td data-row="2" data-col="8">(0.099)</td>
+                  <td data-row="2" data-col="9">(0.105)</td>
                 </tr>
                 <tr>
                   <td data-row="3" data-col="1">Num.Obs.</td>
@@ -478,6 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                   <td data-row="3" data-col="6">536</td>
                   <td data-row="3" data-col="7">536</td>
                   <td data-row="3" data-col="8">536</td>
+                  <td data-row="3" data-col="9">536</td>
                 </tr>
                 <tr>
                   <td data-row="4" data-col="1">R2</td>
@@ -488,6 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                   <td data-row="4" data-col="6">0.089</td>
                   <td data-row="4" data-col="7">0.076</td>
                   <td data-row="4" data-col="8">0.045</td>
+                  <td data-row="4" data-col="9">0.034</td>
                 </tr>
                 <tr>
                   <td data-row="5" data-col="1">R2 Adj.</td>
@@ -498,6 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                   <td data-row="5" data-col="6">0.083</td>
                   <td data-row="5" data-col="7">0.071</td>
                   <td data-row="5" data-col="8">0.039</td>
+                  <td data-row="5" data-col="9">0.028</td>
                 </tr>
                 <tr>
                   <td data-row="6" data-col="1">Std.Errors</td>
@@ -508,6 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                   <td data-row="6" data-col="6">HC1</td>
                   <td data-row="6" data-col="7">HC1</td>
                   <td data-row="6" data-col="8">HC1</td>
+                  <td data-row="6" data-col="9">HC1</td>
                 </tr>
         </tbody>
       </table>

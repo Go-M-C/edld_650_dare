@@ -180,6 +180,8 @@ panel_a/panel_b
 B2. In a regression framework, formally test whether the receipt of additional funds for instructional materials improved test score outcomes for elementary students in California./
 
 **Answer**
+In Table 2, we present estimates for the observed discontinuity seen in panel B of Figure 3 by year. Each entry represents a separate regression, where the row identifies the dependent variable measuring student achievement and the column represents the year. We utilize the same bandwidth as Holden(2016), so each entry is an estimated effect from a linear regression with flexible slopes, rectangular kernel weights and a bandwidth of 19.099. Similar to panel A of Figure 3, column 2 to 3 present the estimated discontinuities in test scores as falsification test, while columns 1 and 4 to 8 present estimated program effects. The estimates in column 4 indicate an effect on student achievement of 0.20 standard deviations in the first year that is statistically significant at the 1 percent level of average scores(p<0.05). Same as the results being displayed in Holden's analysis (2016), the estimated effect declines to 0.16 and 0.18 standard deviations in 2006 and 2007 and is not significant in later years.
+
 
 ```{r}
 data_bandwidth <- data %>% 
@@ -210,13 +212,15 @@ models_avg <- list(
   "2005"     = fit_2005,
   "2006"     = fit_2006,
   "2007"     = fit_2007,
-  "2008"     = fit_2008
+  "2008"     = fit_2008,
+  "2009"     = fit_2009
 )
 
 modelsummary(models_avg,
              vcov = "HC1",
              stars = TRUE,
-             coef_map = c("ind" = "Treatment"),
+             coef_map = c("ind" = "Treatment Effect"),
              gof_omit = "AIC|BIC|Log.Lik|RMSE",
-             title = "Table 2. Regression Discontinuity Estimates of Effect of Textbook on Student Achievement in Elementary Schools")
+             title = "Table 2. Regression Discontinuity Estimates of Effect of Textbook on Student Achievement in Elementary Schools",
+             notes = "Notes: Each entry is an estimated effect from a linear regression with flexible slopes, rectangular kernel weights and a bandwidth of 19.099. Robust standard errors are displayed in parentheses. Estimates in all post years poll all observations from 2005 to 2009 for a total of 2,680 observations. Columns 2-9 show estimated effects for individual years, with 536 observations each.")
 ```
