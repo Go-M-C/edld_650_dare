@@ -2,8 +2,11 @@
 title: "EDLD_650_dare_test_2"
 author: "Dodjivi Amekoudji & Michelle Cui"
 format:
-  html:
-    code-fold: true
+  pdf:
+    keep-text: true
+    header-includes: 
+    - \usepackage{tabularray}
+    - \usepackage{siunitx}
 editor: visual
 fig-width: 7
 fig-height: 4
