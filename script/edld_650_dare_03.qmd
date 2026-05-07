@@ -1,0 +1,38 @@
+---
+title: "EDLD_650_DARE_03"
+author: "Dodjivi Amekoudji & Michelle Cui"
+format: pdf
+editor: visual
+fig-width: 7
+fig-height: 4
+execute: 
+  eval: true 
+  message: false 
+  warning: false
+---
+
+## EDLD 650: Data Analysis and Replication Exercise
+
+## DARE 03
+
+```{r include =FALSE}
+library(pacman)
+
+# These are the packages you will need for the analyses 
+p_load(here, tidyverse, DT, ggplot2, xaringan, knitr, kableExtra, modelsummary, stargazer, xaringanthemer, gganimate, ggthemes, fixest, haven, quantreg,rdrobust, patchwork)
+```
+
+```{r}
+# Loading data
+
+df <- read_csv(here("data/EDLD_650_DARE_3.csv"))
+
+```
+
+#### A. Baseline randomization checks
+
+
+
+
+#### B. Replication and Extension
+
