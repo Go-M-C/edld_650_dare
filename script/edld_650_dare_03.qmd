@@ -1,7 +1,12 @@
 ---
 title: "EDLD_650_DARE_03"
 author: "Dodjivi Amekoudji & Michelle Cui"
-format: pdf
+format: 
+  pdf:
+    keep-text: true
+    header-includes: 
+    - \usepackage{tabularray}
+    - \usepackage{siunitx}
 editor: visual
 fig-width: 7
 fig-height: 4
@@ -19,7 +24,7 @@ execute:
 library(pacman)
 
 # These are the packages you will need for the analyses 
-p_load(here, tidyverse, DT, ggplot2, xaringan, knitr, kableExtra, modelsummary, stargazer, xaringanthemer, gganimate, ggthemes, fixest, haven, quantreg,rdrobust, patchwork)
+p_load(here,arsenal, tidyverse, DT, ggplot2, xaringan, knitr, kableExtra, modelsummary, stargazer, xaringanthemer, gganimate, ggthemes, fixest, haven, quantreg,rdrobust, patchwork)
 ```
 
 ```{r}
@@ -31,7 +36,29 @@ df <- read_csv(here("data/EDLD_650_DARE_3.csv"))
 
 #### A. Baseline randomization checks
 
+**Answer**
 
+```{r results='asis', width.title = 20, format = "markdown"}
+# Balance checks
+
+df$assign_treat <- factor(df$treat,
+                   levels = c(0,1),
+                   labels = c("Control","Treatment"))
+
+df$school <- factor(df$school)
+
+random <- arsenal::tableby(assign_treat ~ frpl + female + dorf + school,
+                           numeric.stats = c("meansd"), 
+                           cat.stats = c("N","countpct"),
+                           digits = 2, data = df)
+mylabels <- list(female = "Female", frpl = "FRPL", 
+                 dorf = "DORF", school = "School")
+
+summary(random,
+        labelTranslations = mylabels,
+        text = TRUE,
+        title ="Descriptive statistics by assigned treatment")
+```
 
 
 #### B. Replication and Extension
