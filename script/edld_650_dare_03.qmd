@@ -36,9 +36,9 @@ df <- read_csv(here("data/EDLD_650_DARE_3.csv"))
 
 #### A. Baseline randomization checks
 
-**Answer**
+**Answer:**
 Given the structure of our data, we ran the baseline randomization check based on stratified children by school. As shown in Table 1, the comparison of READ 180 Enterprise and 
-control children at baseline revealed no statistically significant difference on baseline characteristics for the full sample and by school level. The p-values for all baseline characteristics, FRPL(0.493), Female(0.503), DORF(0.783), and School (0.794), are all above the 0.05 threshold. similar to Kim et al. (2011) presents. The randomization process generated statistically identical treat and control conditions, as there are no significantly differences in baseline characteristics between the two groups.
+control children at baseline revealed no statistically significant difference on baseline characteristics for the full sample and by school level. The p-values for all baseline characteristics, FRPL(0.493), Female(0.503), DORF(0.783), and School (0.794), are all above the 0.05 threshold. Similar to Kim et al. (2011) presents, the randomization process in our check generated statistically identical treat and control conditions. There are no significantly differences in baseline characteristics between the two groups.
 
 ```{r results='asis', width.title = 20, format = "markdown"}
 # Balance checks
@@ -61,10 +61,33 @@ mylabels <- list(female = "Female", frpl = "FRPL",
 summary(random,
         labelTranslations = mylabels,
         text = TRUE,
-        title ="Descriptive statistics by assigned treatment")
+        title ="Table 1. Descriptive statistics by assigned treatment")
 
 ```
 
 
 #### B. Replication and Extension
+
+**B1**. Estimate the bivariate relationship between students' final reading comprehension outcomes and their attendance rate.
+
+**Answer:**
+As the results shown in Table 2, the bivariate relationship between students' final reading comprehension outcomes with their attendance rate is statistically significant ($\beta$ = 11.11, p \< 0.05). However, we should not interpret this result as the causal effect of the program. There are endogenous differences in the expected outcomes of children who has high motivation of attending the READ180 Enterprise after-school program and those who don't. The naïve approach does not identify these effects and endogenous unobservables across individuals.
+
+```{r}
+model_biva <- lm(sat10_compreh ~ read180_attend, data = df)
+
+modelsummary(model_biva,
+             stars = TRUE,
+             fmt = 5,
+             gof_omit = "BIC|AIC",
+             title = "Table 2. Estimation of the bivarate relationship ")
+```
+
+**B2**.Compare the average post-test reading comprehension scores of students who were assigned to participate in the READ180 intervention with those who were not. 
+
+**Answer:**
+
+```{r}
+
+```
 
