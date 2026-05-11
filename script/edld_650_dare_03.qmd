@@ -49,7 +49,7 @@ df$assign_treat <- factor(df$treat,
 
 df$school <- factor(df$school)
 
-random <- arsenal::tableby(assign_treat ~ frpl + female 
+random <- arsenal::tableby(treat ~ frpl + female 
                            + dorf 
                            + school,
                            numeric.stats = c("meansd"), 
