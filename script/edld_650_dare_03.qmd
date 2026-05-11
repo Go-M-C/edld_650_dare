@@ -86,6 +86,24 @@ modelsummary(model_biva,
 **B2**.Compare the average post-test reading comprehension scores of students who were assigned to participate in the READ180 intervention with those who were not. 
 
 **Answer:**
+By simply looking at the figure, it is difficult to determine if the difference is more than sampling idiosyncrasy. As shown in Figure 1, the mean post-test comprehension scores for the READ 180 and control groups appear similar. We must check the p-value from model estimates for further explanation. 
+```{r}
+# Visualize the ITT effects
+mean <- df %>% 
+  group_by(assign_treat) %>% 
+  summarize(mean_sat10 = mean(sat10_compreh))
+
+ggplot(data = mean, aes(x = assign_treat, y = mean_sat10)) +
+  geom_col(fill = "orange", alpha = 0.7, width = 0.6) +
+  labs(title = "Figure 1. Outcome by treatment status",
+       x = "Assigned treatment status",
+       y = "Post-intervention test of comprehension")+
+  theme_minimal()
+```
+
+**B3**.Estimate Intent-to-Treat estimates of being assigned to participate in an after-school READ180 intervention. 
+
+**Answer:**
 
 ```{r}
 
