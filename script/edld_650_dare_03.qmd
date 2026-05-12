@@ -56,10 +56,11 @@ random <- arsenal::tableby(treat ~ frpl + female
 mylabels <- list(female = "Female", frpl = "FRPL", 
                  dorf = "DORF", school = "School")
 
-summary(random,
+table1 <- summary(random,
         labelTranslations = mylabels,
         text = TRUE,
         title ="Table 1. Descriptive statistics by assigned treatment")
+table1
 
 ```
 
@@ -72,11 +73,12 @@ summary(random,
 ```{r}
 model_biva <- lm(sat10_compreh ~ read180_attend, data = df)
 
-modelsummary(model_biva,
+table2 <- modelsummary(model_biva,
              stars = c('*' = 0.05, '**' = 0.01, '***' = 0.001),
              fmt = 5,
              gof_omit = "Adj|Pseudo|Log|Within|AIC|BIC",
              title = "Table 2. Estimation of the bivarate relationship ")
+table2
 ```
 
 **B2**.Compare the average post-test reading comprehension scores of students who were assigned to participate in the READ180 intervention with those who were not.
@@ -89,17 +91,17 @@ mean <- df %>%
   group_by(assign_treat) %>% 
   summarize(mean_sat10 = mean(sat10_compreh))
 
-ggplot(data = mean, aes(x = assign_treat, y = mean_sat10)) +
+figure1 <- ggplot(data = mean, aes(x = assign_treat, y = mean_sat10)) +
   geom_col(fill = "orange", alpha = 0.7, width = 0.6) +
   labs(title = "Figure 1. Outcome by treatment status",
        x = "Assigned treatment status",
        y = "Post-intervention test of comprehension")+
   theme_minimal()
+
+figure1
 ```
 
-**B3**.Estimate Intent-to-Treat estimates of being assigned to participate in an after-school READ180 intervention.
-
-**Answer:**\
+**B3**.Estimate Intent-to-Treat(ITT) estimates of being assigned to participate in an after-school READ180 intervention.
 
 ```{r}
 itt1 <- lm(sat10_compreh ~ treat, data = df)
@@ -110,7 +112,7 @@ row <- tribble(~term, ~'1', ~'2', ~'3',
                'School Fixed Effects', 'No','No','Yes')
 
 
-modelsummary(list(itt1, itt2, itt3),
+table3 <- modelsummary(list(itt1, itt2, itt3),
              title = "Table 3. Intent-to-Treat Estimate of Being Assigned to Participate in READ180 Intervention on the Posttest of SAT 10 Comprehension Score",
              stars = c('*' = 0.05, '**' = 0.01, '***' = 0.001),
              coef_omit = "(Intercept)|as.factor",
@@ -124,9 +126,23 @@ modelsummary(list(itt1, itt2, itt3),
              threeparttable = T,
              notes = c("Notes: The table displays coefficients from Equation X and standard errors in parentheses. All specifications include student's school randomization. 
                        *p = 0.05. **p = 0.01. ***p = 0.001."))
+
+table3
 ```
 
+**Answer:**\
+
+To estimate the ITT estimates of being assigned to the READ 180 Enterprise intervention, we used ordinary least squares (OLS) regression across three specifications. Specifically we estimate:\
+Model 1: $Yi$ = $\beta_0$ + $\beta_1Ti$\
+Model 2: $Yi$ = $\beta_0$ + $\beta_1Ti$ + $\beta_2Xi$ + $\epsilon_i$\
+Model 3: $Yi$ = $\beta_0$ + $\beta_1Ti$ + $\beta_2Xi$ + $\beta_3RB_i$ + $\epsilon_i$\
+
+Where $Yi$ represents the SAT10 posttest score for student $i$, $T_i$ represents whether the student was randomly assigned to READ 180 Enterprise or the district after-school program, $X_i$ represents a vector of student characteristics including the baseline DIBELS Oral Reading Fluency score, $RB_i$ represents the school randomization block, and $\epsilon_i$ represents the error term. The coefficient $\beta_1$ is the estimated difference in posttest scores between treatment and control students and represents the ITT estimate on each outcome measure.\
+
+In Table 3, we present result for each model. In the unconditional model (Model 1), being assigned to READ 180 increased SAT10 posttest score by 9.014 points(SE = 3.703, p = 0.05). Adjusting for student characteristics (Model 2), it lowered the treatment effect to 8.037 points (SE = 1.935, p = 0.001). In our third model (Model) that includes school randomization block fixed effects, the estimated ITT effects is 8.003 (SE = 1.935, p \< 0.05). These estimates differ from the naïve OLS estimate ($\beta$ = 11.11, p \< 0.05) we get for the question B1 and B2. The naïve OLS estimate overstates the effect of attendance rate of READ 180 Enterprise. The Root Mean Squared Error(RMSE) decreased from 32.57 to 16.82 , which suggests the ITT estimates improve model precision accounting for student DORF pretest score, characteristics, and school randomization block. 
+
 **B4** : Identify the eﬀects of full participation in a seven month after-school READ180 reading intervention. 
+
 
 ```{r}
 
@@ -150,7 +166,7 @@ tot_model <- ivreg(
   data = df
 )
 
-modelsummary(
+table4 <- modelsummary(
   list(
     "2SLS (TOT): Attendance (0–1)" = tot_model,
     "OLS (ITT): Assigned to READ180" = itt_model
@@ -169,6 +185,7 @@ modelsummary(
     "Attendance is instrumented using random assignment to READ180."
   )
 )
+table4
 ```
 
 **Answer:**
