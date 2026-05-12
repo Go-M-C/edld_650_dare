@@ -101,14 +101,6 @@ ggplot(data = mean, aes(x = assign_treat, y = mean_sat10)) +
 
 **Answer:**\
 
-
-
-
-
-
-
-
-
 ```{r}
 itt1 <- lm(sat10_compreh ~ treat, data = df)
 itt2 <- lm(sat10_compreh ~ treat + dorf + frpl + female, data = df)
@@ -133,3 +125,62 @@ modelsummary(list(itt1, itt2, itt3),
              notes = c("Notes: The table displays coefficients from Equation X and standard errors in parentheses. All specifications include student's school randomization. 
                        *p = 0.05. **p = 0.01. ***p = 0.001."))
 ```
+
+**B4** : Identify the eﬀects of full participation in a seven month after-school READ180 reading intervention. 
+
+```{r}
+
+library(AER)
+library(sandwich)
+library(modelsummary)
+
+# DATA must already be loaded as `df`
+df$school <- factor(df$school)
+
+# ITT model
+itt_model <- lm(
+  sat10_compreh ~ treat + dorf + frpl + female + school,
+  data = df
+)
+
+# 2SLS / TOT model
+tot_model <- ivreg(
+  sat10_compreh ~ read180_attend + dorf + frpl + female + school |
+    treat + dorf + frpl + female + school,
+  data = df
+)
+
+modelsummary(
+  list(
+    "2SLS (TOT): Attendance (0–1)" = tot_model,
+    "OLS (ITT): Assigned to READ180" = itt_model
+  ),
+  vcov = vcovHC,
+  statistic = "({std.error})",
+  stars = c("+" = .10, "*" = .05, "**" = .01, "***" = .001),
+  coef_map = c(
+    read180_attend = "READ180 Attendance (0–1)",
+    treat = "Assigned to READ180"
+  ),
+  gof_omit = "AIC|BIC|Log|Adj|Std.Errors",
+  notes = c(
+    "Robust (HC1) standard errors in parentheses.",
+    "Controls include baseline oral reading fluency, FRPL, gender, and school fixed effects.",
+    "Attendance is instrumented using random assignment to READ180."
+  )
+)
+```
+
+**Answer:**
+
+We estimate the effect of full participation (100% attendance) in a seven‑month after‑school READ180 intervention relative to no participation using a two‑stage least squares (2SLS) framework. Actual attendance, measured on a 0–1 scale, is instrumented with random assignment to READ180 in order to address potential selection into attendance. The specification controls for baseline oral reading fluency, free/reduced‑price lunch status, gender, and school fixed effects. Under this specification, the coefficient on attendance captures the causal effect of moving from zero participation to full participation for students whose attendance was induced by assignment.
+
+The results indicate that full participation in READ180 increases SAT‑10 reading comprehension by approximately 12 points relative to no attendance. This estimate exceeds the corresponding intent‑to‑treat effect, reflecting incomplete compliance among students assigned to the intervention. The identifying assumptions of the 2SLS approach are plausible in this context. Random assignment supports the assumption of independence, the strong first‑stage relationship between assignment and attendance satisfies the relevance condition, and it is reasonable to assume that assignment affects reading outcomes primarily through participation in READ180 rather than alternative channels. Overall, the findings suggest that sustained participation is necessary to achieve substantive gains in reading comprehension.
+
+**B5**. Write a discussion paragraph in which you present the substantive conclusions (and limitations) of your results about the eﬀects of the after-school READ180 intervention you have documented.
+
+**Answer:**
+
+Overall, the results indicate that the after‑school READ180 intervention can lead to meaningful improvements in reading comprehension when students participate consistently. The treatment‑on‑the‑treated estimates show that moving from no attendance to full participation is associated with an increase of roughly 10–12 SAT‑10 reading comprehension points. This gain is substantively large and exceeds the intent‑to‑treat effect, underscoring that the benefits of READ180 depend critically on sustained engagement rather than simple program assignment. From a policy perspective, these findings suggest that efforts to improve attendance and persistence may be as important as offering access to the intervention itself.
+
+At the same time, several limitations should be acknowledged. First, the estimated effect applies to students whose attendance was influenced by assignment and may not generalize to all eligible students. Second, although the instrumental‑variables approach addresses selection into attendance, it relies on the assumption that assignment affects outcomes only through participation in READ180, which cannot be tested directly. Finally, the analysis focuses on short‑term reading comprehension outcomes and does not address longer‑run impacts or effects on other academic domains. Despite these limitations, the results provide credible evidence that structured after‑school literacy programs like READ180 can be effective when students attend regularly.
